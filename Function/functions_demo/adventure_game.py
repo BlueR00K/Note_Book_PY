@@ -4,11 +4,13 @@ Demo Project: Recursive Adventure Game
 This project demonstrates Python functions, generators, coroutines, decorators, function attributes, recursive generators, and memoization—all in a fun, interactive text adventure game.
 """
 
+from functools import lru_cache
 import time
 import sys
 import os
 import random
-from functools import lru_cache
+from colorama import Fore, Style, init
+init(autoreset=True)
 
 # --- Function Attributes Example ---
 
@@ -36,7 +38,31 @@ def fib(n):
     return fib(n-1) + fib(n-2)
 
 
-# --- 2D CLI Adventure Game ---
+def random_map_size():
+    width = random.randint(4, 10)
+    height = random.randint(5, 10)
+    return width, height
+
+
+def random_item():
+    return random.choice(['#', 'T', 'V', 'C', 'M', 'P', ' '])
+
+
+def generate_procedural_map():
+    width, height = random_map_size()
+    grid = [[random_item() for _ in range(width)] for _ in range(height)]
+    # Ensure at least one vendor, cave, and treasure
+    vendor_x, vendor_y = random.randint(
+        0, width-1), random.randint(0, height-1)
+    cave_x, cave_y = random.randint(0, width-1), random.randint(0, height-1)
+    treasure_x, treasure_y = random.randint(
+        0, width-1), random.randint(0, height-1)
+    grid[vendor_y][vendor_x] = 'V'
+    grid[cave_y][cave_x] = 'C'
+    grid[treasure_y][treasure_x] = 'T'
+    return grid, width, height
+
+
 try:
     import msvcrt
 
@@ -78,43 +104,30 @@ CAVE_LOC = (5, 2)
 
 
 def create_game_map():
-    """Create the game map with treasures and obstacles."""
-    grid = [[' ' for _ in range(MAP_WIDTH)] for _ in range(MAP_HEIGHT)]
-    for _ in range(OBSTACLE_COUNT):
-        x, y = random.randint(0, MAP_WIDTH-1), random.randint(0, MAP_HEIGHT-1)
-        grid[y][x] = '#'
-    placed = 0
-    while placed < TREASURE_COUNT:
-        x, y = random.randint(0, MAP_WIDTH-1), random.randint(0, MAP_HEIGHT-1)
-        if grid[y][x] == ' ':
-            grid[y][x] = 'T'
-            placed += 1
-    vx, vy = VENDOR_LOC
-    cx, cy = CAVE_LOC
-    if 0 <= vx < MAP_WIDTH and 0 <= vy < MAP_HEIGHT:
-        grid[vy][vx] = 'V'
-    if 0 <= cx < MAP_WIDTH and 0 <= cy < MAP_HEIGHT:
-        grid[cy][cx] = 'C'
-    return grid
+    return generate_procedural_map()[0]
 
 
 def draw_map(grid, player):
     """Draw the game map with player and objects."""
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("\n  Adventure Map:")
+    print(f"\n{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
     for y, row in enumerate(grid):
         line = ''
         for x, cell in enumerate(row):
             if player.x == x and player.y == y:
-                line += '\033[92m@\033[0m'
+                line += Fore.GREEN + '@' + Style.RESET_ALL
             elif cell == '#':
-                line += '\033[90m#\033[0m'
+                line += Fore.WHITE + '#' + Style.RESET_ALL
             elif cell == 'T':
-                line += '\033[93m$\033[0m'
+                line += Fore.YELLOW + '$' + Style.RESET_ALL
             elif cell == 'V':
-                line += '\033[94mV\033[0m'
+                line += Fore.BLUE + 'V' + Style.RESET_ALL
             elif cell == 'C':
-                line += '\033[95mC\033[0m'
+                line += Fore.MAGENTA + 'C' + Style.RESET_ALL
+            elif cell == 'M':
+                line += Fore.RED + 'M' + Style.RESET_ALL
+            elif cell == 'P':
+                line += Fore.CYAN + 'P' + Style.RESET_ALL
             else:
                 line += ' '
         print(line)
@@ -133,11 +146,13 @@ def echo():
 def move_player(player, grid, dx, dy):
     """Move player if possible."""
     nx, ny = player.x + dx, player.y + dy
-    if 0 <= nx < MAP_WIDTH and 0 <= ny < MAP_HEIGHT and grid[ny][nx] != '#':
+    map_height = len(grid)
+    map_width = len(grid[0])
+    if 0 <= nx < map_width and 0 <= ny < map_height and grid[ny][nx] != '#':
         player.x, player.y = nx, ny
         player.moves += 1
     else:
-        print("\033[91mBlocked!\033[0m")
+        print(Fore.RED + "Blocked!" + Style.RESET_ALL)
 
 
 @log_calls
@@ -160,90 +175,13 @@ def hit(player, grid):
 
 @log_calls
 def enter(player, grid):
-    """Enter cave or interact with vendor."""
     cell = grid[player.y][player.x]
-    if cell == 'V':
-        print("\033[94mVendor: Want to buy a potion for 1 treasure? [Y/N]\033[0m")
-        ans = input().strip().lower()
-        if ans == 'y' and player.treasures > 0:
-            player.treasures -= 1
-            player.inventory.append('Potion')
-            player.vendor_deals += 1
-            print("You bought a potion!")
-        else:
-            print("No deal.")
-    elif cell == 'C':
-        print("\033[95mYou enter the cave. It's dark and mysterious...\033[0m")
-        challenge_type = random.choice(['fight', 'puzzle', 'skill'])
-        if challenge_type == 'fight':
-            print("A monster appears! Prepare to fight!")
-            monster_hp = random.randint(3, 7)
-            while monster_hp > 0 and player.hp > 0:
-                action = input("[A]ttack or [R]un? ").strip().lower()
-                if action == 'a':
-                    dmg = random.randint(1, 4)
-                    monster_hp -= dmg
-                    print(
-                        f"You hit the monster for {dmg} damage! Monster HP: {max(monster_hp, 0)}")
-                    if monster_hp > 0:
-                        mdmg = random.randint(1, 3)
-                        player.hp -= mdmg
-                        print(
-                            f"Monster hits you for {mdmg} damage! Your HP: {max(player.hp, 0)}")
-                elif action == 'r':
-                    print("You run away from the cave!")
-                    return
-                else:
-                    print("Invalid action. Choose [A]ttack or [R]un.")
-            if player.hp > 0:
-                print("You defeated the monster and found a hidden treasure!")
-                player.inventory.append('Cave Treasure')
-                player.treasures += 1
-            else:
-                print("You were defeated by the monster. Game over!")
-                exit()
-        elif challenge_type == 'puzzle':
-            print("You encounter a mysterious puzzle!")
-            a = random.randint(2, 10)
-            b = random.randint(2, 10)
-            op = random.choice(['+', '-', '*'])
-            if op == '+':
-                answer = a + b
-            elif op == '-':
-                answer = a - b
-            else:
-                answer = a * b
-            print(f"Solve: {a} {op} {b} = ?")
-            guess = input("Your answer: ").strip()
-            if guess.isdigit() and int(guess) == answer:
-                print("Correct! You solved the puzzle and found a hidden treasure!")
-                player.inventory.append('Cave Treasure')
-                player.treasures += 1
-            else:
-                print(
-                    f"Wrong! The answer was {answer}. You leave the cave empty-handed.")
-        elif challenge_type == 'skill':
-            print("A trap is triggered! Test your reflexes.")
-            print("Press Enter as soon as you see GO!")
-            time.sleep(random.uniform(1, 3))
-            print("GO!")
-            start = time.time()
-            input()
-            reaction = time.time() - start
-            if reaction < 0.7:
-                print(
-                    f"Amazing reflexes! ({reaction:.2f}s) You dodge the trap and find a treasure!")
-                player.inventory.append('Cave Treasure')
-                player.treasures += 1
-            else:
-                print(
-                    f"Too slow! ({reaction:.2f}s) The trap hits you. Lose 2 HP.")
-                player.hp -= 2
-                if player.hp <= 0:
-                    print("You were defeated by the trap. Game over!")
-                    exit()
-        else:
-            print("Nothing happens...")
+    # Regenerate map at each gate/checkpoint (vendor/cave)
+    if cell in ['V', 'C']:
+        print(Fore.CYAN + "Checkpoint reached! The world shifts..." + Style.RESET_ALL)
+        new_grid, new_width, new_height = generate_procedural_map()
+        player.x, player.y = 0, 0
+        grid[:] = new_grid
     else:
         print("Nothing to enter here.")
 
@@ -277,8 +215,7 @@ class Player:
 
 
 def main():
-    """Main entry point for the adventure game."""
-    grid = create_game_map()
+    grid, map_width, map_height = generate_procedural_map()
     name = input("Enter your adventurer's name: ")
     player = Player(name)
     msg = echo()
