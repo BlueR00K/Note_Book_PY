@@ -7,6 +7,7 @@ Marker parameters are special parameters in Python functions that allow you to s
 Positional-only parameters can only be specified by their position in the function call. They are defined using a `/` in the function signature.
 
 ### Example
+
 ```python
 def greet(name, /, greeting="Hello"):
     return f"{greeting}, {name}!"
@@ -21,6 +22,7 @@ print(greet("Alice", greeting="Hi"))  # Output: Hi, Alice!
 Keyword-only parameters can only be specified by their name in the function call. They are defined using a `*` in the function signature.
 
 ### Example
+
 ```python
 def greet(*, name, greeting="Hello"):
     return f"{greeting}, {name}!"
@@ -35,6 +37,7 @@ print(greet(name="Alice", greeting="Hi"))  # Output: Hi, Alice!
 Variable-length arguments allow you to pass a variable number of arguments to a function. These include `*args` for positional arguments and `**kwargs` for keyword arguments.
 
 ### Example
+
 ```python
 def print_args(*args):
     for arg in args:
@@ -61,6 +64,7 @@ print_kwargs(name="Alice", age=30)
 You can combine different types of parameters in a single function. The order should be: positional-only parameters, positional or keyword parameters, keyword-only parameters, and variable-length arguments.
 
 ### Example
+
 ```python
 def combined_example(pos1, pos2, /, pos_or_kw, *, kw_only, **kwargs):
     print(f"pos1: {pos1}, pos2: {pos2}, pos_or_kw: {pos_or_kw}, kw_only: {kw_only}")
