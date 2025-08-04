@@ -39,8 +39,8 @@ def fib(n):
 
 
 def random_map_size():
-    width = random.randint(10, 20)
-    height = random.randint(10, 20)
+    width = 20
+    height = 20
     return width, height
 
 
@@ -112,55 +112,170 @@ def create_game_map():
     return generate_procedural_map()[0]
 
 
+# High-res (20x20) ASCII art for items (truncated for brevity, you can replace with full art)
 ASCII_GUIDES = {
     '#': (r"""
-  _______
- /       \
-|  WALL  |
- \_______/
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
+####################
 """, "Wall: Blocks your path. Find a way around!"),
     'T': (r"""
-   $$$$$
-  $     $
- $$$ $$$
-$  $ $  $
- $$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$
 """, "Treasure: Collect for rewards!"),
     'V': (r"""
-   _____
-  /     \
- | VENDOR|
-  \_____/
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
+VVVVVVVVVVVVVVVVVVVV
 """, "Vendor: Trade treasures for potions."),
     'C': (r"""
-   _____
-  /     \
- | CAVE |
-  \_____/
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
 """, "Cave: Face a challenge for a reward!"),
     'M': (r"""
-   /\_/\
-  ( o.o )
-   > ^ <
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM
 """, "Monster: Fight or flee!"),
     'P': (r"""
-   _____
-  /     \
- | POTION|
-  \_____/
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPP
 """, "Potion: Restores health when used."),
     'N': (r"""
-   O  O
-  /|\/|\
-   |  |
-  / \ / \
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNN
 """, "NPC: Meet a mysterious character. Maybe they have a quest!")
 }
 
 
 def draw_map(grid, player):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(f"\n{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
+    # Center the map
+    left_pad = 10
+    print(" " * left_pad + f"{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
     guide_item = None
     for y, row in enumerate(grid):
         line = ''
@@ -185,17 +300,26 @@ def draw_map(grid, player):
                 line += Fore.LIGHTWHITE_EX + 'N' + Style.RESET_ALL
             else:
                 line += ' '
-        # Print map row
-        print(line + (" " * 8 if guide_item is None else ""))
+        # Print map row centered
+        print(" " * left_pad + line, end='')
         # Print guide panel on the right side when player is on an item
         if guide_item and y == player.y:
             ascii_art, info = ASCII_GUIDES[guide_item]
-            for art_line in ascii_art.splitlines():
-                print(" " * (len(grid[0]) + 10) + art_line)
-            print(" " * (len(grid[0]) + 10) + info)
+            art_lines = ascii_art.splitlines()
+            for i, art_line in enumerate(art_lines):
+                if i == 0:
+                    print(" " * 8 + art_line)
+                else:
+                    print(" " * (left_pad + 20 + 8) + art_line)
+            print(" " * (left_pad + 20 + 8) + info)
             guide_item = None
-    player.stats()
-    print("Use arrow keys to move. [P]ick up, [H]it, [E]nter, [Q]uit.")
+        else:
+            print()
+    # Status bar and key guide at the bottom
+    print("\n" + " " * left_pad +
+          f"Player: {player.name} | HP: {player.hp} | Treasures: {player.treasures} | Inventory: {player.inventory}")
+    print(" " * left_pad +
+          "Keys: [WASD/Arrows] Move | [E] Interact | [P] Pick Up | [H] Hit | [Q] Quit | [T] Talk/Trade | [O] Open Door")
 
 
 def echo():
@@ -245,6 +369,21 @@ def enter(player, grid):
         new_grid, new_width, new_height = generate_procedural_map()
         player.x, player.y = 0, 0
         grid[:] = new_grid
+    elif cell == 'N':
+        print(Fore.LIGHTWHITE_EX +
+              "You meet an NPC! Press [T] to talk or [E] to interact." + Style.RESET_ALL)
+    elif cell == '#':
+        print(
+            Fore.WHITE + "It's a wall. Maybe you can open a secret door with [O]." + Style.RESET_ALL)
+    elif cell == 'P':
+        print(Fore.CYAN +
+              "You found a potion! Press [P] to pick up." + Style.RESET_ALL)
+    elif cell == 'M':
+        print(
+            Fore.RED + "A monster blocks your way! Press [H] to hit or [E] to interact." + Style.RESET_ALL)
+    elif cell == 'T':
+        print(Fore.YELLOW +
+              "Treasure! Press [P] to pick up." + Style.RESET_ALL)
     else:
         print("Nothing to enter here.")
 
