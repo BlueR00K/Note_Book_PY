@@ -112,168 +112,71 @@ def create_game_map():
     return generate_procedural_map()[0]
 
 
-# High-res (20x20) ASCII art for items (truncated for brevity, you can replace with full art)
+# High-res (80x80) ASCII art for items and default Sword
 ASCII_GUIDES = {
     '#': (r"""
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-####################
-""", "Wall: Blocks your path. Find a way around!"),
+""" + "#"*80 + "\n"*79, "Wall: Blocks your path. Find a way around!"),
     'T': (r"""
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$
-""", "Treasure: Collect for rewards!"),
+""" + "$"*80 + "\n"*79, "Treasure: Collect for rewards!"),
     'V': (r"""
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-VVVVVVVVVVVVVVVVVVVV
-""", "Vendor: Trade treasures for potions."),
+""" + "V"*80 + "\n"*79, "Vendor: Trade treasures for potions."),
     'C': (r"""
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-CCCCCCCCCCCCCCCCCCCC
-""", "Cave: Face a challenge for a reward!"),
+""" + "C"*80 + "\n"*79, "Cave: Face a challenge for a reward!"),
     'M': (r"""
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMM
-""", "Monster: Fight or flee!"),
+""" + "M"*80 + "\n"*79, "Monster: Fight or flee!"),
     'P': (r"""
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-PPPPPPPPPPPPPPPPPPPP
-""", "Potion: Restores health when used."),
+""" + "P"*80 + "\n"*79, "Potion: Restores health when used."),
     'N': (r"""
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNN
-""", "NPC: Meet a mysterious character. Maybe they have a quest!")
+""" + "N"*80 + "\n"*79, "NPC: Meet a mysterious character. Maybe they have a quest!")
 }
+DEFAULT_SWORD_ART = (r"""
+                                                                      █         
+                                                                   █████        
+                                                                ████████        
+                                                              ██████████        
+                                                            ██████ ████         
+                                                          ██████ █████          
+                                                         ██████ ████            
+                                                       ████████████             
+                                                     ████ ████ ███              
+                                                   ███████ ██████               
+                                                  █████████ ███                 
+                                                ████ ██ ██████                  
+                                              ███████ ██ ████                   
+                                             ████ █████████                     
+                                           ████ ██ ██ ████                      
+                                         ███████████████                        
+                                        ████ ██ ██ ████                         
+                                       █████████ ████                           
+                                     ████ ██████████                            
+                                   ██████████ ████                              
+                                  ████ █████████                                
+                                ████ ██ ██ ████                                 
+                               ██████████████                                    
+                             ████ ██ ███████                                    
+                            █████████ ████                                      
+                   ███    ████ █████████                                        
+                  ████  ███████ ██ ████                                         
+                   ██████████████████                                           
+                   ██ ██████ ██ ████                                            
+                    █████ ████████                                              
+                   ████ █████████                                               
+                   ██ ██████████████                                            
+                  ██ █ ██████     ██                                            
+               ███ ██   ████████████                                            
+               █ █ ██ ██                                                        
+             ██ █ █████                                                         
+           ██████  ███                                                          
+        ████████████                                                            
+        ███ █████                                                               
+        ████████                                                                
+        ████████                                                                
+          █████                                                                 
+""" + "\n"*39, "The Sword: Your legendary weapon.")
 
 
 def draw_map(grid, player):
     os.system('cls' if os.name == 'nt' else 'clear')
-    # Center the map
     left_pad = 10
     print(" " * left_pad + f"{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
     guide_item = None
@@ -302,19 +205,16 @@ def draw_map(grid, player):
                 line += ' '
         # Print map row centered
         print(" " * left_pad + line, end='')
-        # Print guide panel on the right side when player is on an item
-        if guide_item and y == player.y:
-            ascii_art, info = ASCII_GUIDES[guide_item]
-            art_lines = ascii_art.splitlines()
-            for i, art_line in enumerate(art_lines):
-                if i == 0:
-                    print(" " * 8 + art_line)
-                else:
-                    print(" " * (left_pad + 20 + 8) + art_line)
-            print(" " * (left_pad + 20 + 8) + info)
-            guide_item = None
-        else:
-            print()
+        print()
+    # Always show the image panel on the right
+    if guide_item:
+        ascii_art, info = ASCII_GUIDES[guide_item]
+    else:
+        ascii_art, info = DEFAULT_SWORD_ART
+    art_lines = ascii_art.splitlines()
+    for art_line in art_lines:
+        print(" " * (left_pad + 20 + 8) + art_line)
+    print(" " * (left_pad + 20 + 8) + info)
     # Status bar and key guide at the bottom
     print("\n" + " " * left_pad +
           f"Player: {player.name} | HP: {player.hp} | Treasures: {player.treasures} | Inventory: {player.inventory}")
