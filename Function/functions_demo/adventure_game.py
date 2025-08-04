@@ -39,8 +39,8 @@ def fib(n):
 
 
 def random_map_size():
-    width = random.randint(4, 10)
-    height = random.randint(5, 10)
+    width = random.randint(10, 20)
+    height = random.randint(10, 20)
     return width, height
 
 
