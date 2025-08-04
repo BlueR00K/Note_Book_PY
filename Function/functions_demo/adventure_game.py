@@ -45,7 +45,12 @@ def random_map_size():
 
 
 def random_item():
-    return random.choice(['#', 'T', 'V', 'C', 'M', 'P', ' '])
+    # Weighted: more empty spaces, fewer items
+    return random.choices(
+        population=[' ', '#', 'T', 'V', 'C', 'M', 'P'],
+        weights=[60, 10, 7, 3, 3, 7, 10],
+        k=1
+    )[0]
 
 
 def generate_procedural_map():
