@@ -145,5 +145,64 @@ foo()
 | Enclosing   | Outer function in nest  | Until outer function ends|
 | Local       | Inside a function       | Until function returns  |
 
+## Scope vs. Namespace in Python
+
+### Namespace
+
+A **namespace** is a mapping from names to objects. It is like a dictionary where variable names are the keys and objects are the values. Namespaces help avoid naming conflicts by isolating identifiers in different contexts.
+
+- **Built-in Namespace:** Contains names like `print`, `len`, etc. Always available.
+- **Global Namespace:** Contains names defined at the top level of a module or script.
+- **Local Namespace:** Contains names defined inside a function.
+- **Enclosing Namespace:** For nested functions, the outer function’s local namespace.
+
+Namespaces are created at different moments and have different lifetimes. For example, the global namespace lasts as long as the program runs, while a local namespace exists only during a function call.
+
+### Scope
+
+**Scope** refers to the textual region of a Python program where a namespace is directly accessible. It determines the visibility and lifetime of variables.
+
+- **Local Scope:** Names defined within a function.
+- **Enclosing Scope:** Names in the local scope of enclosing functions (for nested functions).
+- **Global Scope:** Names defined at the module level.
+- **Built-in Scope:** Names preassigned in Python.
+
+Python uses the **LEGB Rule** to resolve names:
+
+- **L**ocal
+- **E**nclosing
+- **G**lobal
+- **B**uilt-in
+
+### Key Differences
+
+- **Namespace** is about the mapping of names to objects; it’s a container.
+- **Scope** is about the visibility of names; it’s a region in code where a name can be directly accessed.
+
+### Example
+
+```python
+x = 10  # Global namespace
+
+def outer():
+    y = 20  # Enclosing (outer) function's local namespace
+    def inner():
+        z = 30  # Local namespace
+        print(x, y, z)  # x: global, y: enclosing, z: local
+    inner()
+
+outer()
+```
+
+### Related Concepts
+
+- **Variable Lifetime:** How long a variable exists (depends on its namespace).
+- **Variable Visibility:** Where a variable can be accessed (depends on its scope).
+- **Shadowing:** When a variable in a local scope has the same name as one in an outer scope, the inner variable "shadows" the outer one.
+
+### Practical Tip
+
+Understanding namespaces and scopes helps you avoid bugs related to variable shadowing, accidental overwrites, and makes your code easier to debug and maintain.
+
 ---
 Namespaces and scopes are the backbone of Python's name resolution. Mastering them helps you write robust, maintainable, and bug-free code.
