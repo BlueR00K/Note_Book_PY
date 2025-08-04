@@ -103,12 +103,107 @@ print(list(fib_gen(3)))
 
 ## Curiosity Sparkers
 
-- Can you use recursive generators to traverse a file system?
-- How would you combine recursive generators and decorators for debugging?
-- Can you build a recursive generator that yields paths in a graph?
-- What happens if you decorate a generator with a decorator that modifies its output?
+---
+
+### Can you use recursive generators to traverse a file system?
+
+Yes! Recursive generators are perfect for walking through directories and files:
+
+```python
+import os
+
+
+    for entry in os.listdir(path):
+        full_path = os.path.join(path, entry)
+        if os.path.isdir(full_path):
+            yield from walk_files(full_path)
+        else:
+            yield full_path
+
+# for file in walk_files("./some_folder"):
+#     print(file)
+```
 
 ---
+
+### How would you combine recursive generators and decorators for debugging?
+
+You can use a decorator to log each recursive call and its arguments:
+
+```python
+def debug(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__} with {args}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@debug
+def flatten(items):
+    for item in items:
+        if isinstance(item, list):
+            yield from flatten(item)
+        else:
+            yield item
+
+nested = [1, [2, [3, 4], 5], 6]
+print(list(flatten(nested)))
+```
+
+---
+
+### Can you build a recursive generator that yields paths in a graph?
+
+Absolutely! You can recursively yield all paths from a start node to an end node:
+
+```python
+def find_paths(graph, start, end, path=None):
+    if path is None:
+        path = [start]
+    if start == end:
+        yield path
+    for node in graph.get(start, []):
+        if node not in path:
+            yield from find_paths(graph, node, end, path + [node])
+
+---
+    'A': ['B', 'C'],
+    'B': ['C', 'D'],
+    'C': ['D'],
+    'D': []
+}
+for p in find_paths(graph, 'A', 'D'):
+    print(p)
+# Output: All paths from 'A' to 'D'
+```
+
+---
+
+### What happens if you decorate a generator with a decorator that modifies its output?
+
+If a decorator wraps a generator and changes its output, you can transform or filter the yielded values:
+
+```python
+def double_yields(gen_func):
+    def wrapper(*args, **kwargs):
+        for value in gen_func(*args, **kwargs):
+            yield value * 2
+    return wrapper
+
+@double_yields
+def numbers():
+    for i in range(5):
+        yield i
+
+print(list(numbers()))  # [0, 2, 4, 6, 8]
+```
+
+---
+
+## More Details: When to Use Recursive Generators and Decorators
+
+- Use recursive generators for any problem involving nested, hierarchical, or tree-like data.
+- Decorators can add logging, memoization, timing, or transformation to recursive functions and generators.
+- Combining both lets you build powerful, maintainable solutions for complex data traversal and manipulation.
 
 ## Final Thoughts
 
