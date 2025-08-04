@@ -45,10 +45,10 @@ def random_map_size():
 
 
 def random_item():
-    # Weighted: more empty spaces, fewer items
+    # Weighted: more empty spaces, items are rare, NPCs are very rare
     return random.choices(
-        population=[' ', '#', 'T', 'V', 'C', 'M', 'P'],
-        weights=[60, 10, 7, 3, 3, 7, 10],
+        population=[' ', '#', 'T', 'V', 'C', 'M', 'P', 'N'],
+        weights=[200, 10, 5, 2, 2, 5, 7, 1],
         k=1
     )[0]
 
@@ -112,15 +112,63 @@ def create_game_map():
     return generate_procedural_map()[0]
 
 
+ASCII_GUIDES = {
+    '#': (r"""
+  _______
+ /       \
+|  WALL  |
+ \_______/
+""", "Wall: Blocks your path. Find a way around!"),
+    'T': (r"""
+   $$$$$
+  $     $
+ $$$ $$$
+$  $ $  $
+ $$$$$$$
+""", "Treasure: Collect for rewards!"),
+    'V': (r"""
+   _____
+  /     \
+ | VENDOR|
+  \_____/
+""", "Vendor: Trade treasures for potions."),
+    'C': (r"""
+   _____
+  /     \
+ | CAVE |
+  \_____/
+""", "Cave: Face a challenge for a reward!"),
+    'M': (r"""
+   /\_/\
+  ( o.o )
+   > ^ <
+""", "Monster: Fight or flee!"),
+    'P': (r"""
+   _____
+  /     \
+ | POTION|
+  \_____/
+""", "Potion: Restores health when used."),
+    'N': (r"""
+   O  O
+  /|\/|\
+   |  |
+  / \ / \
+""", "NPC: Meet a mysterious character. Maybe they have a quest!")
+}
+
+
 def draw_map(grid, player):
-    """Draw the game map with player and objects."""
     os.system('cls' if os.name == 'nt' else 'clear')
     print(f"\n{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
+    guide_item = None
     for y, row in enumerate(grid):
         line = ''
         for x, cell in enumerate(row):
             if player.x == x and player.y == y:
                 line += Fore.GREEN + '@' + Style.RESET_ALL
+                if cell in ASCII_GUIDES:
+                    guide_item = cell
             elif cell == '#':
                 line += Fore.WHITE + '#' + Style.RESET_ALL
             elif cell == 'T':
@@ -133,9 +181,19 @@ def draw_map(grid, player):
                 line += Fore.RED + 'M' + Style.RESET_ALL
             elif cell == 'P':
                 line += Fore.CYAN + 'P' + Style.RESET_ALL
+            elif cell == 'N':
+                line += Fore.LIGHTWHITE_EX + 'N' + Style.RESET_ALL
             else:
                 line += ' '
-        print(line)
+        # Print map row
+        print(line + (" " * 8 if guide_item is None else ""))
+        # Print guide panel on the right side when player is on an item
+        if guide_item and y == player.y:
+            ascii_art, info = ASCII_GUIDES[guide_item]
+            for art_line in ascii_art.splitlines():
+                print(" " * (len(grid[0]) + 10) + art_line)
+            print(" " * (len(grid[0]) + 10) + info)
+            guide_item = None
     player.stats()
     print("Use arrow keys to move. [P]ick up, [H]it, [E]nter, [Q]uit.")
 
