@@ -4,7 +4,7 @@ Demo Project: Recursive Adventure Game
 This project demonstrates Python functions, generators, coroutines, decorators, function attributes, recursive generators, and memoization—all in a fun, interactive text adventure game.
 """
 
-from ascii_art import ASCII_GUIDES, DEFAULT_SWORD_ART
+
 from key_guide import render_key_guide
 from key_actions import handle_key
 from functools import lru_cache
@@ -119,14 +119,11 @@ def draw_map(grid, player):
     os.system('cls' if os.name == 'nt' else 'clear')
     left_pad = 10
     print(" " * left_pad + f"{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
-    guide_item = None
     for y, row in enumerate(grid):
         line = ''
         for x, cell in enumerate(row):
             if player.x == x and player.y == y:
                 line += Fore.GREEN + '@' + Style.RESET_ALL
-                if cell in ASCII_GUIDES:
-                    guide_item = cell
             elif cell == '#':
                 line += Fore.WHITE + '#' + Style.RESET_ALL
             elif cell == 'T':
@@ -143,18 +140,9 @@ def draw_map(grid, player):
                 line += Fore.LIGHTWHITE_EX + 'N' + Style.RESET_ALL
             else:
                 line += ' '
-        # Print map row centered
         print(" " * left_pad + line, end='')
         print()
-    # Always show the image panel on the right
-    if guide_item:
-        ascii_art, info = ASCII_GUIDES[guide_item]
-    else:
-        ascii_art, info = DEFAULT_SWORD_ART
-    art_lines = ascii_art.splitlines()
-    for art_line in art_lines:
-        print(" " * (left_pad + 20 + 8) + art_line)
-    print(" " * (left_pad + 20 + 8) + info)
+    # Status bar at the bottom
     # Status bar at the bottom
     print("\n" + " " * left_pad +
           f"Player: {player.name} | HP: {player.hp} | Treasures: {player.treasures} | Inventory: {player.inventory}")

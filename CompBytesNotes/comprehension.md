@@ -204,9 +204,6 @@ print(next(gen))  # Output: 4
 
 ---
 
-*Ready for your confirmation to proceed with practical, real-world examples and answers!*
----
-
 ## Advanced & Fun Real-World Examples
 
 ### 1. Flattening a Matrix (Nested List Comprehension)
