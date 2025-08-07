@@ -4,7 +4,7 @@ Demo Project: Recursive Adventure Game
 This project demonstrates Python functions, generators, coroutines, decorators, function attributes, recursive generators, and memoization—all in a fun, interactive text adventure game.
 """
 
-from ascii_art import ASCII_GUIDES, DEFAULT_SWORD_ART
+from item_guides import ASCII_GUIDES, DEFAULT_SWORD_ART
 from functools import lru_cache
 import time
 import sys
