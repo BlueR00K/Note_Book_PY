@@ -149,14 +149,20 @@ def draw_map(grid, player):
         ascii_art, info = ASCII_GUIDES[guide_item]
     else:
         ascii_art, info = DEFAULT_SWORD_ART
-    # Show the guide at the top (20x20 area)
+    # Show the guide at the top (20-width area, any height)
     print(" " * left_pad + f"{Fore.YELLOW}Item Guide:{Style.RESET_ALL}")
+    # Format info to 20-width lines
+
+    def wrap_text(text, width=20):
+        import textwrap
+        return textwrap.wrap(text, width=width)
     if ascii_art:
         art_lines = ascii_art.splitlines()
         for art_line in art_lines[:20]:
             print(" " * left_pad + art_line[:20])
-    # Always show the description below the art (or at top if no art)
-    print(" " * left_pad + (info or ""))
+    if info:
+        for line in wrap_text(info, 20):
+            print(" " * left_pad + line)
     print()
     print(" " * left_pad + f"{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
     for y, row in enumerate(grid):
