@@ -150,9 +150,38 @@ def draw_map(grid, player):
     else:
         ascii_art, info = DEFAULT_SWORD_ART
     art_lines = ascii_art.splitlines()
-    for art_line in art_lines:
-        print(" " * (left_pad + 20 + 8) + art_line)
-    print(" " * (left_pad + 20 + 8) + info)
+    # Show the guide at the top (20x20 area)
+    print(" " * left_pad + f"{Fore.YELLOW}Item Guide:{Style.RESET_ALL}")
+    if ascii_art:
+        art_lines = ascii_art.splitlines()
+        for art_line in art_lines[:20]:
+            print(" " * left_pad + art_line[:20])
+    # Always show the description below the art (or at top if no art)
+    print(" " * left_pad + (info or ""))
+    print()
+    print(" " * left_pad + f"{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
+    for y, row in enumerate(grid):
+        line = ''
+        for x, cell in enumerate(row):
+            if player.x == x and player.y == y:
+                line += Fore.GREEN + '@' + Style.RESET_ALL
+            elif cell == '#':
+                line += Fore.WHITE + '#' + Style.RESET_ALL
+            elif cell == 'T':
+                line += Fore.YELLOW + '$' + Style.RESET_ALL
+            elif cell == 'V':
+                line += Fore.BLUE + 'V' + Style.RESET_ALL
+            elif cell == 'C':
+                line += Fore.MAGENTA + 'C' + Style.RESET_ALL
+            elif cell == 'M':
+                line += Fore.RED + 'M' + Style.RESET_ALL
+            elif cell == 'P':
+                line += Fore.CYAN + 'P' + Style.RESET_ALL
+            elif cell == 'N':
+                line += Fore.LIGHTWHITE_EX + 'N' + Style.RESET_ALL
+            else:
+                line += ' '
+        print(" " * left_pad + line)
     # Status bar and key guide at the bottom
     print("\n" + " " * left_pad +
           f"Player: {player.name} | HP: {player.hp} | Treasures: {player.treasures} | Inventory: {player.inventory}")
