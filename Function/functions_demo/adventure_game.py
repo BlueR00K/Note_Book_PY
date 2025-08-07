@@ -4,7 +4,9 @@ Demo Project: Recursive Adventure Game
 This project demonstrates Python functions, generators, coroutines, decorators, function attributes, recursive generators, and memoization—all in a fun, interactive text adventure game.
 """
 
-from item_guides import ASCII_GUIDES, DEFAULT_SWORD_ART
+from ascii_art import ASCII_GUIDES, DEFAULT_SWORD_ART
+from key_guide import render_key_guide
+from key_actions import handle_key
 from functools import lru_cache
 import time
 import sys
@@ -149,49 +151,14 @@ def draw_map(grid, player):
         ascii_art, info = ASCII_GUIDES[guide_item]
     else:
         ascii_art, info = DEFAULT_SWORD_ART
-    # Show the guide at the top (20-width area, any height)
-    print(" " * left_pad + f"{Fore.YELLOW}Item Guide:{Style.RESET_ALL}")
-    # Format info to 20-width lines
-
-    def wrap_text(text, width=20):
-        import textwrap
-        return textwrap.wrap(text, width=width)
-    if ascii_art:
-        art_lines = ascii_art.splitlines()
-        for art_line in art_lines[:20]:
-            print(" " * left_pad + art_line[:20])
-    if info:
-        for line in wrap_text(info, 20):
-            print(" " * left_pad + line)
-    print()
-    print(" " * left_pad + f"{Fore.YELLOW}Adventure Map:{Style.RESET_ALL}")
-    for y, row in enumerate(grid):
-        line = ''
-        for x, cell in enumerate(row):
-            if player.x == x and player.y == y:
-                line += Fore.GREEN + '@' + Style.RESET_ALL
-            elif cell == '#':
-                line += Fore.WHITE + '#' + Style.RESET_ALL
-            elif cell == 'T':
-                line += Fore.YELLOW + '$' + Style.RESET_ALL
-            elif cell == 'V':
-                line += Fore.BLUE + 'V' + Style.RESET_ALL
-            elif cell == 'C':
-                line += Fore.MAGENTA + 'C' + Style.RESET_ALL
-            elif cell == 'M':
-                line += Fore.RED + 'M' + Style.RESET_ALL
-            elif cell == 'P':
-                line += Fore.CYAN + 'P' + Style.RESET_ALL
-            elif cell == 'N':
-                line += Fore.LIGHTWHITE_EX + 'N' + Style.RESET_ALL
-            else:
-                line += ' '
-        print(" " * left_pad + line)
-    # Status bar and key guide at the bottom
+    art_lines = ascii_art.splitlines()
+    for art_line in art_lines:
+        print(" " * (left_pad + 20 + 8) + art_line)
+    print(" " * (left_pad + 20 + 8) + info)
+    # Status bar at the bottom
     print("\n" + " " * left_pad +
           f"Player: {player.name} | HP: {player.hp} | Treasures: {player.treasures} | Inventory: {player.inventory}")
-    print(" " * left_pad +
-          "Keys: [WASD/Arrows] Move | [E] Interact | [P] Pick Up | [H] Hit | [Q] Quit | [T] Talk/Trade | [O] Open Door")
+    render_key_guide(left_pad)
 
 
 def echo():
@@ -298,25 +265,30 @@ def main():
         draw_map(grid, player)
         msg.send(f"Moves: {player.moves} | Treasures: {player.treasures}")
         key = get_key()
-        if key in ['q']:
+        action, arg = handle_key(key, player, grid)
+        if action == 'move':
+            dx, dy = arg
+            move_player(player, grid, dx, dy)
+        elif action == 'pick_up':
+            pick_up(player, grid)
+        elif action == 'pick_up_potion':
+            # Example: picking up a potion
+            player.inventory.append('Potion')
+            grid[player.y][player.x] = ' '
+            print("You picked up a potion!")
+        elif action == 'hit':
+            hit(player, grid)
+        elif action == 'enter':
+            enter(player, grid)
+        elif action == 'talk':
+            print("You talk or trade with the character.")
+        elif action == 'open':
+            print("You try to open a door or secret. (Feature to expand)")
+        elif action == 'quit':
             print("Thanks for playing!")
             break
-        elif key in ['w', '\x1b[A']:
-            move_player(player, grid, 0, -1)
-        elif key in ['s', '\x1b[B']:
-            move_player(player, grid, 0, 1)
-        elif key in ['a', '\x1b[D']:
-            move_player(player, grid, -1, 0)
-        elif key in ['d', '\x1b[C']:
-            move_player(player, grid, 1, 0)
-        elif key == 'p':
-            pick_up(player, grid)
-        elif key == 'h':
-            hit(player, grid)
-        elif key == 'e':
-            enter(player, grid)
-        else:
-            msg.send("Unknown key.")
+        elif action == 'info':
+            msg.send(arg)
         time.sleep(0.1)
     print("\n--- Game Summary ---")
     player.stats()
