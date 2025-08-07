@@ -149,7 +149,6 @@ def draw_map(grid, player):
         ascii_art, info = ASCII_GUIDES[guide_item]
     else:
         ascii_art, info = DEFAULT_SWORD_ART
-    art_lines = ascii_art.splitlines()
     # Show the guide at the top (20x20 area)
     print(" " * left_pad + f"{Fore.YELLOW}Item Guide:{Style.RESET_ALL}")
     if ascii_art:
