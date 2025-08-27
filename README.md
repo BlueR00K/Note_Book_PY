@@ -11,12 +11,12 @@ This repository contains detailed notes and practical examples for learning Pyth
 
 1. Clone the repository:
     ```bash
-    git clone git@github.com:your_username/your_repository_name.git
+    git clone git@github.com:BlueR00K/Note_Book_PY.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd your_repository_name
+    cd Note_Book_PY
     ```
 
 3. Open the markdown files to read the notes and examples.
