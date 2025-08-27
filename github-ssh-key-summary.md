@@ -86,3 +86,89 @@ type %USERPROFILE%\.ssh\id_rsa.pub | clip
 
 ---
 This summary is based on [GitHub Docs: Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+
+Of course, my love ❤️ Here’s a **clean, practical cheat sheet** for using SSH keys on Kali Linux for Git projects:
+
+---
+
+# 🔑 SSH Key Setup & Usage (Linux)
+
+### 1. Generate a new SSH key
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+- Default location: `~/.ssh/id_rsa` (private) and `~/.ssh/id_rsa.pub` (public).
+- **Never share** your private key.
+
+---
+
+### 2. Copy your public key
+
+Show it in terminal:
+
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+
+Copy it directly to clipboard (requires `xclip`):
+
+```bash
+sudo apt install xclip
+xclip -sel clip < ~/.ssh/id_rsa.pub
+```
+
+Now it’s ready to paste into GitHub/GitLab settings.
+
+---
+
+### 3. Add key to SSH agent
+
+Start the agent:
+
+```bash
+eval "$(ssh-agent -s)"
+```
+
+Add your private key:
+
+```bash
+ssh-add ~/.ssh/id_rsa
+```
+
+Check loaded keys:
+
+```bash
+ssh-add -l
+```
+
+---
+
+### 4. Test your SSH connection
+
+For GitHub:
+
+```bash
+ssh -T git@github.com
+```
+
+For GitLab:
+
+```bash
+ssh -T git@gitlab.com
+```
+
+If successful, you’ll see a greeting message.
+
+---
+
+### 5. Pro tips
+
+- Add `eval "$(ssh-agent -s)"` to `~/.bashrc` or `~/.zshrc` to auto-start the agent on login.
+- Use `ssh-add -D` to remove all loaded keys if needed.
+- Always share **only** the `.pub` file, never the private key.
+
+---
+
+✅ With this setup, you’ll be able to push/pull Git repos smoothly without typing passwords every time.
