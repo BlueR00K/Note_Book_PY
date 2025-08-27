@@ -1,6 +1,7 @@
 # 🐍 Encapsulation, Data Hiding, and Interfaces in Python
 
 ## 🔹 Introduction
+
 Encapsulation and data hiding are **fundamental OOP principles** that help control access to data and methods within classes. In Python, while true access restriction doesn’t exist (everything is technically accessible), conventions and special mechanisms allow developers to achieve **controlled access**.
 
 This note explores **Encapsulation, Data Hiding, and Interfaces** in Python in detail.
@@ -8,9 +9,11 @@ This note explores **Encapsulation, Data Hiding, and Interfaces** in Python in d
 ---
 
 ## 🔹 Encapsulation
+
 Encapsulation is the process of **binding data (variables) and methods (functions) together into a single unit (class)**.
 
 ### ✅ Example
+
 ```python
 class Car:
     def __init__(self, brand, speed):
@@ -37,6 +40,7 @@ car.accelerate()
 ---
 
 ## 🔹 Data Hiding
+
 Python does not enforce access control like Java or C++, but it **follows naming conventions** to indicate intent:
 
 1. **Public Members** (default) – Accessible everywhere.
@@ -44,6 +48,7 @@ Python does not enforce access control like Java or C++, but it **follows naming
 3. **Private Members** (`__var`) – Name mangling makes it harder to access directly.
 
 ### ✅ Example
+
 ```python
 class BankAccount:
     def __init__(self, owner, balance):
@@ -70,12 +75,14 @@ print(acc._BankAccount__balance)  # ✅ Name mangling access (not recommended)
 ---
 
 ## 🔹 Interface in Python
+
 An **interface** defines a **contract** of methods that a class must implement. Python doesn’t have explicit interfaces like Java, but you can achieve them using:
 
 1. **Abstract Base Classes (ABCs)** from the `abc` module
 2. **Duck Typing** (if it behaves like a duck, it’s a duck!)
 
 ### ✅ Using Abstract Base Classes
+
 ```python
 from abc import ABC, abstractmethod
 
@@ -99,6 +106,7 @@ for method in methods:
 ```
 
 ### ✅ Using Duck Typing
+
 ```python
 class Dog:
     def speak(self):
@@ -122,6 +130,7 @@ animal_sound(Cat())  # Meow!
 ## 🔹 Practical Examples
 
 ### 📌 Example 1: ATM Machine Simulation
+
 ```python
 class ATM:
     def __init__(self, balance):
@@ -150,6 +159,7 @@ print(atm.get_balance()) # 400
 ---
 
 ### 📌 Example 2: Interface for Vehicles
+
 ```python
 from abc import ABC, abstractmethod
 
@@ -176,22 +186,27 @@ for v in vehicles:
 ## 🔹 Frequently Asked Questions
 
 **Q1. What is the difference between encapsulation and data hiding?**  
+
 - Encapsulation = Bundling data + methods into classes.  
 - Data hiding = Restricting direct access to attributes (via `_` and `__` conventions).  
 
 **Q2. Does Python truly support private variables?**  
+
 - No, it uses **name mangling** (`_ClassName__var`) to discourage access, but not enforce it.  
 
 **Q3. How are interfaces implemented in Python?**  
+
 - Using `abc.ABC` (formal interfaces) or duck typing (informal interfaces).  
 
 **Q4. When should I use abstract classes vs duck typing?**  
+
 - Use **ABC** when you want a strict contract.  
 - Use **duck typing** when you want flexibility and Pythonic style.  
 
 ---
 
 ## 🔹 Summary
+
 - **Encapsulation** → Combines data and behavior in classes.  
 - **Data Hiding** → Achieved via naming conventions (`_var`, `__var`).  
 - **Interface** → Implemented via abstract classes or duck typing.  
