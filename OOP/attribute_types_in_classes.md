@@ -86,10 +86,6 @@ class Rectangle:
 
 ---
 
-*Next: Advanced and practical examples of all attribute types in classes will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: Attribute Types in Python Classes
 
 ### 1. Instance vs. Class Attributes in Practice

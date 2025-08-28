@@ -98,10 +98,6 @@ print(m.sqrt(16))  # Output: 4.0
 
 ---
 
-*Next: Advanced and practical examples of modules and classes will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: Modules and Classes
 
 ### Example 1: Creating a Custom Module with Multiple Classes and Functions

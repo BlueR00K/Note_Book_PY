@@ -79,10 +79,6 @@ d.speak()
 
 ---
 
-*Next: Advanced and practical examples of `super()` and method overriding will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: `super()` and Method Overriding
 
 ### Syllabus: Deep Dive into `super()` and Method Overriding

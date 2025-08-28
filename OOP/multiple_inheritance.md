@@ -102,10 +102,6 @@ d.do()
 
 ---
 
-*Next: Advanced and practical examples of multiple inheritance will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: Multiple Inheritance
 
 ### 1. Combining Functionality from Multiple Parents

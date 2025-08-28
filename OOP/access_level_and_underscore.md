@@ -105,10 +105,6 @@ one_million = 1_000_000
 
 ---
 
-*Next: Advanced and practical examples of access levels and underscore applications will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: Access Level and Applications of _ (Underscore)
 
 ### 1. Advanced Access Control Patterns

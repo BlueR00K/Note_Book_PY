@@ -117,9 +117,6 @@ print(x == z)  # True
 
 ---
 
-*Next: Advanced and practical examples of objects in Python will be added in the following step.*
----
-
 ## 12. Advanced & Practical Examples
 
 ### 12.1. Dynamic Attribute Assignment

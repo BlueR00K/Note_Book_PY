@@ -129,10 +129,6 @@ mypy example.py
 
 ---
 
-*Next: Advanced and practical examples of class documentation, docstrings, and mypy will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: Class Documentation, Docstrings, and mypy
 
 ### Example 1: Comprehensive Class and Method Docstrings

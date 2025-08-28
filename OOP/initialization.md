@@ -110,8 +110,6 @@ p = Point(2, 3)
 - Avoid mutable default arguments.
 - Document initialization parameters clearly.
 
----
-
 # Advanced and Practical Examples of Initialization in Python OOP
 
 ## Example 1: Enforcing Attribute Types with Initialization

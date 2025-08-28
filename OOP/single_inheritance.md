@@ -89,10 +89,6 @@ d.speak()
 
 ---
 
-*Next: Advanced and practical examples of single inheritance will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: Single Inheritance
 
 ### 1. Extending Parent Functionality

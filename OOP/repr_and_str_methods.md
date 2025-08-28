@@ -76,10 +76,6 @@ print(p)       # (1, 2)
 
 ---
 
-*Next: Advanced and practical examples of `repr` and `str` methods will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: `repr` and `str` Methods
 
 ### 1. Implementing Both `__repr__` and `__str__` in a Class

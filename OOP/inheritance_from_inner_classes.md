@@ -78,10 +78,6 @@ s.show()
 
 ---
 
-*Next: Advanced and practical examples of inheritance from inner classes will be added in the following step.*
-
----
-
 ## Advanced and Practical Examples: Inheritance from Inner Classes
 
 ### 1. Extending Functionality of an Inner Class
