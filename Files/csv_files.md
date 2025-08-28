@@ -1,11 +1,13 @@
 # 📘 CSV Files in Python
 
 ## 🔹 Introduction
+
 CSV (Comma-Separated Values) files are widely used to store tabular data in plain text format. Each line represents a row, and values are separated by a delimiter (commonly a comma `,`). Python provides built-in and external libraries to efficiently handle CSV files.
 
 ---
 
 ## 🔹 Key Characteristics of CSV Files
+
 - **Plain text** format (readable in any text editor).
 - **Row-based** structure (one line = one record).
 - **Delimiter-based** separation (comma by default, but can be semicolon, tab, etc.).
@@ -14,7 +16,9 @@ CSV (Comma-Separated Values) files are widely used to store tabular data in plai
 ---
 
 ## 🔹 Working with CSV in Python
+
 Python provides two main approaches:
+
 1. **Using the built-in `csv` module**
 2. **Using `pandas` for data analysis**
 
@@ -23,6 +27,7 @@ Python provides two main approaches:
 ## 1️⃣ Using the Built-in `csv` Module
 
 ### ✅ Reading a CSV File
+
 ```python
 import csv
 
@@ -33,6 +38,7 @@ with open("data.csv", "r") as file:
 ```
 
 ### ✅ Writing to a CSV File
+
 ```python
 import csv
 
@@ -46,6 +52,7 @@ with open("output.csv", "w", newline="") as file:
 ```
 
 ### ✅ Using `DictReader` and `DictWriter`
+
 ```python
 import csv
 
@@ -67,9 +74,11 @@ with open("people.csv", "w", newline="") as file:
 ---
 
 ## 2️⃣ Using Pandas
+
 `pandas` makes working with CSVs easier for large datasets.
 
 ### ✅ Reading CSV with pandas
+
 ```python
 import pandas as pd
 
@@ -78,6 +87,7 @@ print(df.head())  # Display first 5 rows
 ```
 
 ### ✅ Writing CSV with pandas
+
 ```python
 import pandas as pd
 
@@ -93,6 +103,7 @@ df.to_csv("people.csv", index=False)
 ```
 
 ### ✅ Handling Custom Delimiters
+
 ```python
 import pandas as pd
 
@@ -105,6 +116,7 @@ df = pd.read_csv("data.tsv", sep="\t")
 ## 🔹 Practical Examples
 
 ### 📌 Example 1: Filtering Rows from a CSV
+
 ```python
 import csv
 
@@ -116,6 +128,7 @@ print(high_salary)
 ```
 
 ### 📌 Example 2: Merging Two CSV Files
+
 ```python
 import pandas as pd
 
@@ -127,6 +140,7 @@ merged.to_csv("merged.csv", index=False)
 ```
 
 ### 📌 Example 3: Updating a CSV File
+
 ```python
 import pandas as pd
 
@@ -138,6 +152,7 @@ df.to_csv("students.csv", index=False)
 ---
 
 ## 🔹 Common Issues and Solutions
+
 - **Extra blank lines when writing CSV** → use `newline=''` in `open()`.
 - **Encoding errors** → specify encoding (e.g., `encoding='utf-8'`).
 - **Large files** → use pandas with `chunksize` for processing.
@@ -145,6 +160,7 @@ df.to_csv("students.csv", index=False)
 ---
 
 ## 🔹 Summary
+
 - Use `csv` module for lightweight operations.
 - Use `pandas` for heavy data analysis and manipulation.
 - Always share **only** the `.pub` keys when dealing with public sharing.
