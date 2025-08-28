@@ -275,6 +275,6 @@ print(e.timestamp())
 
 ### 10. Limitation: Cooperative `super()` Only Works with New-Style Classes
 
-# All classes in Python 3 are new-style (inherit from `object`), so `super()` works as expected.
+# All classes in Python 3 are new-style (inherit from `object`), so `super()` works as expected
 
 ---
