@@ -127,4 +127,85 @@ except ZeroDivisionError as e:
 
 ## 11. Real-World Examples and Advanced Usage
 
-(Advanced/practical examples will be added in the next step.)
+---
+
+### 11.1. Custom Exception Classes
+
+You can define your own exception types by subclassing `Exception`. This is useful for creating meaningful error types in large applications.
+
+```python
+class DataValidationError(Exception):
+  """Raised when data validation fails."""
+  pass
+
+try:
+  raise DataValidationError("Invalid data format!")
+except DataValidationError as e:
+  print(f"Custom Exception Caught: {e}")
+```
+
+### 11.2. Exception Chaining (`raise ... from ...`)
+
+Exception chaining helps preserve the original traceback when re-raising exceptions, making debugging easier.
+
+```python
+def process_data(data):
+  try:
+    return int(data)
+  except ValueError as e:
+    raise DataValidationError("Conversion failed") from e
+
+try:
+  process_data("abc")
+except DataValidationError as e:
+  print(f"Chained Exception: {e}")
+  print(f"Original cause: {e.__cause__}")
+```
+
+### 11.3. Using Context Managers for Exception Handling
+
+Context managers can be used to manage resources and handle exceptions gracefully.
+
+```python
+from contextlib import contextmanager
+
+@contextmanager
+def managed_resource():
+  print("Resource acquired")
+  try:
+    yield
+  except Exception as e:
+    print(f"Exception handled in context: {e}")
+  finally:
+    print("Resource released")
+
+with managed_resource():
+  raise RuntimeError("Something went wrong!")
+```
+
+### 11.4. Logging Exceptions
+
+Instead of just printing exceptions, use the `logging` module for professional applications.
+
+```python
+import logging
+
+logging.basicConfig(level=logging.ERROR)
+
+try:
+  1 / 0
+except ZeroDivisionError:
+  logging.exception("An error occurred")
+```
+
+### 11.5. Best Practices for Exception Handling
+
+- Catch specific exceptions, not just `Exception` or `BaseException`.
+- Avoid silent failures (empty `except` blocks).
+- Use custom exceptions for domain-specific errors.
+- Always clean up resources (use `finally` or context managers).
+- Log exceptions in production code for traceability.
+
+---
+
+These advanced techniques help you write robust, maintainable, and professional Python code.
