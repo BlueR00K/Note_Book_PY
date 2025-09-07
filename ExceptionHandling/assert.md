@@ -418,5 +418,3 @@ def only_positive(x):
 - Never use assertions for production error handling or user input validation.
 - Integrate assertions with testing, debugging, and documentation for robust code.
 - Understand the limitations and risks of disabling assertions in optimized mode.
-
----
