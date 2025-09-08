@@ -5,16 +5,21 @@
 - Introduction to the `math` module
 - Why use the `math` module?
 - Importing and exploring the module
-- Common mathematical functions
+- Core mathematical functions (absolute value, rounding, power, roots)
 - Constants in the `math` module
-- Advanced mathematical functions
-- Working with angles and trigonometry
-- Logarithmic and exponential functions
-- Special functions (factorial, gcd, etc.)
+- Advanced mathematical functions (exponentials, logarithms, trigonometry)
+- Working with angles and conversions
+- Special functions (factorial, gcd, lcm, comb, perm)
 - Floating-point operations and precision
 - Real-world scenarios and practical examples
 - Comparison with built-in and NumPy math
-- Summary and key takeaways
+- Advanced usage and edge cases (NaN, infinity, precision, performance)
+- Integration with other modules (random, statistics, decimal, fractions)
+- Best practices and anti-patterns
+- Advanced mathematical topics (hyperbolic, complex, gamma, error functions)
+- Real-world patterns and scenarios
+- Documenting and testing math code
+- Summary tables and key takeaways
 
 ---
 
