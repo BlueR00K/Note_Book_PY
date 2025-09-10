@@ -1,4 +1,36 @@
+
 # Class Documentation, Docstrings, and mypy in Python OOP
+
+## Syllabus
+
+1. Introduction: Importance of documentation and type checking in Python OOP
+2. Class documentation:
+    - Purpose and placement of class docstrings
+    - Documenting attributes and usage
+    - PEP 257 conventions
+3. Writing docstrings:
+    - Single-line and multi-line docstrings
+    - Docstrings for classes, methods, properties, and modules
+    - Formatting arguments, returns, and exceptions
+    - Tools and IDE support for docstrings
+4. Type hints and static type checking:
+    - PEP 484 and type hint syntax
+    - Benefits of type hints in OOP
+    - Typing for attributes, methods, and properties
+5. Using mypy for static analysis:
+    - Installation and setup
+    - Running mypy and interpreting results
+    - Common mypy errors and troubleshooting
+6. Best practices:
+    - Writing clear, concise, and complete docstrings
+    - Combining docstrings and type hints for maximum clarity
+    - Keeping documentation up to date
+7. Advanced and practical examples:
+    - Comprehensive class and method docstrings
+    - Module-level docstrings
+    - Docstrings for properties and static methods
+    - mypy detecting type errors in real code
+8. Summary and key takeaways
 
 ## 1. Introduction
 
@@ -27,14 +59,16 @@ class Animal:
 
 ---
 
-## 3. Docstrings
+## 3. Writing Docstrings
 
 - **Docstrings** are string literals that appear as the first statement in a module, function, class, or method.
 - They are used by documentation tools and IDEs to provide context-sensitive help.
+
 - Docstrings can be single-line or multi-line (triple-quoted).
 - Use the [PEP 257](https://peps.python.org/pep-0257/) conventions for writing docstrings.
+- Format arguments, return values, and exceptions clearly in multi-line docstrings.
 
-### Example
+### Example: Single-line Docstring
 
 ```python
 def add(a: int, b: int) -> int:
@@ -42,7 +76,26 @@ def add(a: int, b: int) -> int:
     return a + b
 ```
 
-### Multi-line Docstring Example
+### Example: Multi-line Docstring with Arguments, Returns, and Raises
+
+    def __init__(self, name: str, age: int):
+        """Initialize a Person object.
+
+        Args:
+            name (str): The person's name.
+            age (int): The person's age.
+        Raises:
+            ValueError: If age is negative.
+        """
+        if age < 0:
+            raise ValueError("Age cannot be negative.")
+        self.name = name
+        self.age = age
+
+## 3.1 Tools and IDE Support for Docstrings
+
+- Many IDEs (e.g., PyCharm, VS Code) provide docstring templates and in-line documentation popups.
+- Tools like Sphinx and pdoc can generate HTML documentation from docstrings.
 
 ```python
 class Person:
@@ -114,6 +167,28 @@ def greet(name: str) -> str:
 
 ### Running mypy
 
+## 5.1 Common mypy Errors and Troubleshooting
+
+- **Type mismatch:** Passing the wrong type to a function or method.
+- **Missing type hints:** mypy may warn if type hints are missing (depending on configuration).
+- **Incompatible return type:** Returning a value of the wrong type.
+- **Unreachable code:** mypy can detect code that will never be executed.
+
+#### Example: Incompatible Return Type
+
+```python
+def get_number() -> int:
+    return "not a number"  # mypy will flag this
+```
+
+#### mypy Output
+
+```
+error: Incompatible return value type (got "str", expected "int")
+```
+
+For more troubleshooting tips, see the [mypy documentation](https://mypy.readthedocs.io/en/stable/common_issues.html).
+
 ```sh
 mypy example.py
 ```
@@ -129,7 +204,7 @@ mypy example.py
 
 ---
 
-## Advanced and Practical Examples: Class Documentation, Docstrings, and mypy
+## 7. Advanced and Practical Examples: Class Documentation, Docstrings, and mypy
 
 ### Example 1: Comprehensive Class and Method Docstrings
 
@@ -172,7 +247,14 @@ class BankAccount:
             return False
         self.balance -= amount
         return True
-```
+
+## 8. Summary and Key Takeaways
+
+- Use docstrings to document all classes, methods, properties, and modules.
+- Follow PEP 257 for docstring conventions and PEP 484 for type hints.
+- Use tools and IDE features to maintain and generate documentation.
+- Run mypy regularly to catch type-related bugs early.
+- Combine clear docstrings and type hints for maximum code clarity and maintainability.
 
 ### Example 2: Module-Level Docstrings and mypy Usage
 

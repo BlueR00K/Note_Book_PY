@@ -1,4 +1,46 @@
+
 # Creating Classes, Adding Attributes and Methods in Python (OOP)
+
+## Syllabus
+
+1. Introduction: What are classes, attributes, and methods in Python OOP?
+2. Defining a class:
+    - Syntax and naming conventions
+    - Class body and indentation
+3. Creating objects (instances):
+    - Instantiation and object identity
+4. Instance attributes:
+    - Defining in `__init__`
+    - Per-object state
+5. Methods:
+    - Instance methods and `self`
+    - Method invocation
+6. Class attributes:
+    - Shared state
+    - Access patterns
+7. Special methods:
+    - `__init__`, `__str__`, `__repr__`, and more
+    - Customizing object behavior
+8. Adding and modifying attributes dynamically:
+    - Runtime attribute addition
+    - Use cases and caveats
+9. Private and protected attributes:
+    - Naming conventions (`_attr`, `__attr`)
+    - Name mangling and access control
+10. Properties and attribute control:
+    - Using `@property` for getters/setters
+    - Validation and computed attributes
+11. Static and class methods:
+    - `@staticmethod` and `@classmethod`
+    - Differences and use cases
+12. Best practices:
+    - Naming, documentation, and design
+    - Avoiding anti-patterns
+13. Advanced and practical examples:
+    - Method chaining
+    - Real-world class design
+    - Combining features
+14. Summary and key takeaways
 
 ## 1. Introduction
 
@@ -135,17 +177,69 @@ print(p._Person__secret)  # Access via name mangling
 
 ## 10. Best Practices
 
-- Use `self` for instance attributes and methods.
-- Use class attributes for shared data.
-- Use naming conventions for protected/private attributes.
-- Keep methods focused and well-named.
-- Document your classes and methods.
+## 10. Properties and Attribute Control
+
+- Use the `@property` decorator to create managed attributes (getters/setters).
+- Properties allow validation, computed values, and encapsulation.
+
+```python
+class Celsius:
+    def __init__(self, temp):
+        self._temp = temp
+    @property
+    def temp(self):
+        return self._temp
+    @temp.setter
+    def temp(self, value):
+        if value < -273.15:
+            raise ValueError("Temperature below absolute zero!")
+        self._temp = value
+
+c = Celsius(25)
+c.temp = 0
+# c.temp = -300  # Raises ValueError
+print(c.temp)
+```
 
 ---
 
-## 11. Advanced & Practical Examples
+## 11. Static and Class Methods
 
-### 11.1. Class with Default and Optional Attributes
+- Use `@staticmethod` for utility functions that do not access class or instance state.
+- Use `@classmethod` for alternative constructors or methods that operate on the class itself.
+- Static and class methods are called on the class, not the instance.
+
+```python
+class Example:
+    @staticmethod
+    def add(x, y):
+        return x + y
+    @classmethod
+    def from_string(cls, s):
+        name, age = s.split(',')
+        return cls(name, int(age))
+```
+
+---
+
+## 12. Best Practices
+
+- Use `self` for instance attributes and methods.
+- Use class attributes for shared data.
+- Use naming conventions for protected/private attributes.
+- Use properties for validation and encapsulation.
+- Use static/class methods appropriately.
+- Keep methods focused and well-named.
+- Document your classes and methods with docstrings.
+- Avoid anti-patterns like excessive dynamic attributes or unclear naming.
+
+---
+
+---
+
+## 13. Advanced & Practical Examples
+
+### 13.1. Class with Default and Optional Attributes
 
 ```python
 class Car:
@@ -163,7 +257,7 @@ print(car2.make, car2.color)  # Honda red
 
 ---
 
-### 11.2. Method Chaining
+### 13.2. Method Chaining
 
 ```python
 class Builder:
@@ -181,7 +275,7 @@ print(b.build())  # Output: Built: Engine, Wheels, Doors
 
 ---
 
-### 11.3. Using Properties for Attribute Control
+### 13.3. Using Properties for Attribute Control
 
 ```python
 class Temperature:
@@ -204,7 +298,7 @@ print(t.celsius)
 
 ---
 
-### 11.4. Static and Class Methods
+### 13.4. Static and Class Methods
 
 ```python
 class Math:
@@ -221,7 +315,7 @@ print(Math.description())
 
 ---
 
-### 11.5. Real-World Example: Bank Account
+### 13.5. Real-World Example: Bank Account
 
 ```python
 class BankAccount:
@@ -247,4 +341,14 @@ print(acct.balance)
 
 ---
 
-*These advanced examples show practical patterns for class design, attribute management, and method usage in Python OOP.*
+---
+
+## 14. Summary and Key Takeaways
+
+- Classes define the structure and behavior of objects in Python.
+- Use instance attributes for per-object state and class attributes for shared state.
+- Methods define object behavior; use special methods to customize built-in operations.
+- Properties provide controlled access and validation for attributes.
+- Use static and class methods for utility and alternative constructors.
+- Follow best practices for naming, documentation, and design.
+- Combine these features for robust, maintainable, and Pythonic OOP code.

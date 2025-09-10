@@ -1,4 +1,23 @@
+
 # Objects in Python (OOP)
+
+## Syllabus
+
+1. Introduction: What is an object and why is it important?
+2. What is an object?
+3. Creating objects in Python
+4. Object attributes and methods
+5. The `self` parameter
+6. Built-in functions for objects
+7. Object lifecycle
+8. Special methods (magic/dunder methods)
+9. Mutable vs immutable objects
+10. Object identity vs equality
+11. Best practices
+12. Advanced and practical examples
+13. Summary and key takeaways
+
+---
 
 ## 1. Introduction
 
@@ -117,7 +136,7 @@ print(x == z)  # True
 
 ---
 
-## 12. Advanced & Practical Examples
+## 12. Advanced and Practical Examples: Objects in Python
 
 ### 12.1. Dynamic Attribute Assignment
 
@@ -231,4 +250,12 @@ print(cart.total())  # Output: 14.98
 
 ---
 
-*These advanced examples show how objects are used dynamically, customized, and applied in real-world Python code.*
+---
+
+## 13. Summary and Key Takeaways
+
+- Everything in Python is an object, including numbers, functions, and classes.
+- Objects encapsulate data (attributes) and behavior (methods).
+- Use special methods to customize object behavior and make your classes more Pythonic.
+- Prefer composition over inheritance for code reuse and flexibility.
+- Use built-in functions and introspection tools to work with objects dynamically.

@@ -1,24 +1,28 @@
 # Operator Overloading in Python
 
-## 1. Introduction and Syllabus
+## 1. Syllabus
 
-Operator overloading allows you to define custom behavior for Python's built-in operators (such as `+`, `-`, `*`, `==`, etc.) in your own classes. By implementing special (dunder) methods, you can make your objects interact naturally with operators, enabling expressive, readable, and Pythonic code. Mastering operator overloading is essential for building custom data types, mathematical objects, and domain-specific languages.
-
-### Syllabus
-
-- What is operator overloading? (definition, motivation, and real-world analogy)
-- Special (dunder) methods for operator overloading
-- Arithmetic operators (`__add__`, `__sub__`, `__mul__`, etc.)
-- Comparison operators (`__eq__`, `__lt__`, `__gt__`, etc.)
-- In-place and reflected operators (`__iadd__`, `__radd__`, etc.)
-- Type checking and best practices
-- Operator overloading for custom data types (e.g., vectors, matrices)
-- Common pitfalls and anti-patterns
-- Real-world examples and advanced usage
+1. Introduction to Operator Overloading
+2. What is Operator Overloading? (Definition, Motivation, Real-World Analogy)
+3. Special (Dunder) Methods for Operator Overloading
+4. Arithmetic Operators (`__add__`, `__sub__`, `__mul__`, etc.)
+5. Comparison Operators (`__eq__`, `__lt__`, `__gt__`, etc.)
+6. In-Place and Reflected Operators (`__iadd__`, `__radd__`, etc.)
+7. Type Checking and Best Practices
+8. Operator Overloading for Custom Data Types (e.g., vectors, matrices)
+9. Common Pitfalls and Anti-Patterns
+10. Advanced/Practical Examples
+11. Summary
 
 ---
 
-## 2. What is Operator Overloading?
+## 2. Introduction to Operator Overloading
+
+Operator overloading allows you to define custom behavior for Python's built-in operators (such as `+`, `-`, `*`, `==`, etc.) in your own classes. By implementing special (dunder) methods, you can make your objects interact naturally with operators, enabling expressive, readable, and Pythonic code. Mastering operator overloading is essential for building custom data types, mathematical objects, and domain-specific languages.
+
+---
+
+## 3. What is Operator Overloading? (Definition, Motivation, Real-World Analogy)
 
 - Operator overloading lets you define how operators behave for your own classes.
 - Achieved by implementing special methods (e.g., `__add__`, `__eq__`).
@@ -28,14 +32,14 @@ Operator overloading allows you to define custom behavior for Python's built-in 
 
 ---
 
-## 3. Special (Dunder) Methods for Operator Overloading
+## 4. Special (Dunder) Methods for Operator Overloading
 
 - Python uses special methods (double underscores, or "dunder" methods) to implement operator behavior.
 - Examples: `__add__` for `+`, `__eq__` for `==`, `__str__` for `str()`.
 
 ---
 
-## 4. Arithmetic Operators
+## 5. Arithmetic Operators (`__add__`, `__sub__`, `__mul__`, etc.)
 
 - `__add__(self, other)` for `+`
 - `__sub__(self, other)` for `-`
@@ -62,31 +66,7 @@ print(v1 + v2)  # (4, 6)
 
 ---
 
-## 5. Comparison Operators
-
-- `__eq__(self, other)` for `==`
-- `__ne__(self, other)` for `!=`
-- `__lt__(self, other)` for `<`
-- `__le__(self, other)` for `<=`
-- `__gt__(self, other)` for `>`
-- `__ge__(self, other)` for `>=`
-
-```python
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-    def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
-
-p1 = Point(1, 2)
-p2 = Point(1, 2)
-print(p1 == p2)  # True
-```
-
----
-
-## 6. In-Place and Reflected Operators
+## 6. In-Place and Reflected Operators (`__iadd__`, `__radd__`, etc.)
 
 - In-place: `__iadd__` for `+=`, `__isub__` for `-=`, etc.
 - Reflected: `__radd__` for right-hand `+`, `__rmul__` for right-hand `*`, etc.
@@ -115,14 +95,38 @@ print(c.value)  # 8
 
 ---
 
-## 8. Operator Overloading for Custom Data Types
+## 8. Operator Overloading for Custom Data Types (e.g., vectors, matrices)
 
 - Useful for vectors, matrices, complex numbers, units, and domain-specific objects.
 - Enables natural, mathematical syntax for custom types.
 
 ---
 
-## 9. Common Pitfalls and Anti-Patterns
+## 9. Comparison Operators (`__eq__`, `__lt__`, `__gt__`, etc.)
+
+- `__eq__(self, other)` for `==`
+- `__ne__(self, other)` for `!=`
+- `__lt__(self, other)` for `<`
+- `__le__(self, other)` for `<=`
+- `__gt__(self, other)` for `>`
+- `__ge__(self, other)` for `>=`
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
+p1 = Point(1, 2)
+p2 = Point(1, 2)
+print(p1 == p2)  # True
+```
+
+---
+
+## 10. Common Pitfalls and Anti-Patterns
 
 - Not returning `NotImplemented` for unsupported types.
 - Overloading operators inconsistently or illogically.
@@ -131,11 +135,9 @@ print(c.value)  # 8
 
 ---
 
-## 10. Real-World Examples and Advanced Usage
+## 10. Advanced/Practical Examples
 
-(Advanced/practical examples will be added in the next step.)
-
-### 1. Vector Class with Full Arithmetic and Comparison Overloading
+### 10.1 Vector Class with Full Arithmetic and Comparison Overloading
 
 ```python
 class Vector:
@@ -172,7 +174,7 @@ print(v1 == Vector(1, 2))  # True
 
 ---
 
-### 2. In-Place Operator Overloading with Type Checking
+### 10.2 In-Place Operator Overloading with Type Checking
 
 ```python
 class Counter:
@@ -191,7 +193,7 @@ print(c.value)  # 15
 
 ---
 
-### 3. Overloading Comparison for Custom Sorting
+### 10.3 Overloading Comparison for Custom Sorting
 
 ```python
 class Student:
@@ -215,7 +217,7 @@ for s in students:
 
 ---
 
-### 4. Edge Case: Returning NotImplemented
+### 10.4 Edge Case: Returning NotImplemented
 
 ```python
 class Foo:
@@ -228,7 +230,7 @@ f = Foo()
 
 ---
 
-### 5. Best Practice: Documenting Operator Behavior
+### 10.5 Best Practice: Documenting Operator Behavior
 
 ```python
 class Money:
@@ -249,4 +251,8 @@ print(m1 + m2)  # $15.00
 
 ---
 
-*These advanced examples show how to use operator overloading for expressive, robust, and Pythonic custom types. Mastering operator overloading is key to building natural and maintainable APIs in Python.*
+---
+
+## 11. Summary
+
+Operator overloading in Python enables custom classes to interact naturally with built-in operators, making code more expressive and Pythonic. By implementing special methods and following best practices, you can create robust, maintainable, and intuitive APIs for your custom data types. Always document operator behavior, handle types carefully, and avoid anti-patterns to ensure your code remains clear and predictable.

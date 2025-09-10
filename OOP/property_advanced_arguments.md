@@ -1,27 +1,30 @@
+
 # Advanced Usage: Other Arguments of `property` and the `property` Decorator in Python
-
-## 1. Introduction and Syllabus
-
-The `property` built-in in Python is more than just a decorator for simple getter/setter patterns. It is a powerful descriptor that can be used directly, supports advanced argument patterns, and enables fine-grained control over attribute access, documentation, and introspection. Mastering the full capabilities of `property` is essential for professional Python development, especially in large or framework-based projects.
 
 ### Syllabus
 
-- What is the `property` object? (definition, motivation, and descriptor protocol)
-- The full signature of `property()`
-- Using `property()` as a function vs. as a decorator
-- Arguments: `fget`, `fset`, `fdel`, `doc`
-- Dynamic and programmatic property creation
-- Customizing property docstrings and metadata
-- Read-only, write-only, and computed properties with custom docs
-- Advanced patterns: property chaining, property factories, and class decorators
-- Introspection and property attributes (`fget`, `fset`, `fdel`, `__doc__`)
-- Best practices and professional use cases
-- Common pitfalls and anti-patterns
-- Real-world advanced examples
+1. Introduction to the `property` Object
+2. Full Signature of `property()`
+3. Using `property()` as a Function vs. as a Decorator
+4. Arguments: `fget`, `fset`, `fdel`, `doc`
+5. Customizing Property Docstrings and Metadata
+6. Dynamic and Programmatic Property Creation
+7. Advanced Patterns: Property Factories, Chaining, and Class Decorators
+8. Introspection and Property Attributes (`fget`, `fset`, `fdel`, `__doc__`)
+9. Best Practices and Professional Use Cases
+10. Common Pitfalls and Anti-Patterns
+11. Advanced/Practical Examples
+12. Summary
 
 ---
 
-## 2. What is the `property` Object?
+## 1. Introduction
+
+The `property` built-in in Python is more than just a decorator for simple getter/setter patterns. It is a powerful descriptor that can be used directly, supports advanced argument patterns, and enables fine-grained control over attribute access, documentation, and introspection. Mastering the full capabilities of `property` is essential for professional Python development, especially in large or framework-based projects.
+
+---
+
+## 2. Introduction to the `property` Object
 
 - `property` is a built-in class that implements the descriptor protocol.
 - It allows you to manage attribute access by defining getter, setter, and deleter methods, and optionally a docstring.
@@ -42,7 +45,7 @@ property(fget=None, fset=None, fdel=None, doc=None)
 
 ---
 
-## 4. Using `property()` as a Function (Not Just a Decorator)
+## 4. Using `property()` as a Function vs. as a Decorator
 
 You can create properties programmatically, not just with decorators:
 
@@ -93,14 +96,14 @@ class Data:
 
 ---
 
-## 7. Advanced Patterns: Property Factories and Chaining
+## 7. Advanced Patterns: Property Factories, Chaining, and Class Decorators
 
 - You can build property factories for reusable patterns (e.g., type checking, validation, computed properties).
 - Chaining properties or composing them with descriptors enables advanced behaviors.
 
 ---
 
-## 8. Introspection and Property Attributes
+## 8. Introspection and Property Attributes (`fget`, `fset`, `fdel`, `__doc__`)
 
 - Access the underlying getter, setter, deleter, and docstring:
 
@@ -131,9 +134,9 @@ print(p.__doc__)  # Dynamic property for x
 
 ---
 
-## 11. Real-World Advanced Examples
+## 11. Advanced/Practical Examples
 
-### 1. Dynamic Property Creation in a Loop
+### 11.1. Dynamic Property Creation in a Loop
 
 ```python
 def make_property(attr):
@@ -159,7 +162,7 @@ print(Point.x.__doc__)  # Dynamic property for x
 
 ---
 
-### 2. Custom Validation and Type Checking with Property Factories
+### 11.2. Custom Validation and Type Checking with Property Factories
 
 ```python
 def typed_property(name, expected_type):
@@ -185,7 +188,7 @@ p = Person('Alice', 30)
 
 ---
 
-### 3. Read-Only Computed Property with Custom Docstring
+### 11.3. Read-Only Computed Property with Custom Docstring
 
 ```python
 class Circle:
@@ -202,7 +205,7 @@ print(Circle.area.__doc__)
 
 ---
 
-### 4. Introspection: Accessing Property Methods and Docstrings
+### 11.4. Introspection: Accessing Property Methods and Docstrings
 
 ```python
 class Demo:
@@ -217,7 +220,7 @@ print(Demo.value.__doc__)  # A demo property.
 
 ---
 
-### 5. Advanced: Property with Custom Deleter and Logging
+### 11.5. Advanced: Property with Custom Deleter and Logging
 
 ```python
 class Resource:
@@ -240,4 +243,8 @@ del r.name        # Deleting name cache
 
 ---
 
-*These advanced examples show how to leverage all arguments of the property decorator for dynamic, validated, and introspectable attribute management. Mastering these patterns is essential for professional Python development and framework design.*
+---
+
+## 12. Summary
+
+Mastering the advanced arguments and patterns of the `property` decorator in Python enables you to create dynamic, validated, and introspectable attributes. This is essential for professional Python development, especially in frameworks and large codebases. Use these techniques judiciously to keep your code maintainable, well-documented, and robust.

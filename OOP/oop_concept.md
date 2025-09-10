@@ -1,12 +1,31 @@
-# 🐍 Object-Oriented Programming (OOP) in Python
 
-## 🔹 Introduction
+# Object-Oriented Programming (OOP) in Python
+
+## Syllabus
+
+1. Introduction: What is OOP and why is it important?
+2. Core OOP concepts: encapsulation, abstraction, inheritance, polymorphism
+3. Classes and objects
+4. Constructors and destructors
+5. Class vs. instance variables
+6. Method types: instance, class, static
+7. Dunder (magic) methods
+8. Multiple inheritance and MRO
+9. Best practices and anti-patterns
+10. Advanced and practical examples
+11. Summary and key takeaways
+
+---
+
+---
+
+## 1. Introduction
 
 Object-Oriented Programming (OOP) is a paradigm that organizes software design around **objects** rather than functions and logic. Objects represent **real-world entities**, and OOP provides a clear structure for code that is **reusable, modular, and easier to maintain**.
 
 ---
 
-## 🔹 Core Concepts of OOP
+## 2. Core Concepts of OOP
 
 Python supports all major OOP principles. The four pillars are:
 
@@ -17,7 +36,7 @@ Python supports all major OOP principles. The four pillars are:
 
 ---
 
-## 1️⃣ Encapsulation
+### 2.1 Encapsulation
 
 Encapsulation means **bundling data and methods** that operate on that data into a single unit (class). It also restricts direct access to some components.
 
@@ -48,7 +67,7 @@ print(account.get_balance())  # 150
 
 ---
 
-## 2️⃣ Abstraction
+### 2.2 Abstraction
 
 Abstraction means **hiding implementation details** and showing only the essential features.
 
@@ -75,7 +94,7 @@ print(circle.area())  # 78.5
 
 ---
 
-## 3️⃣ Inheritance
+### 2.3 Inheritance
 
 Inheritance allows a class to **reuse code** from another class (parent/child relationship).
 
@@ -105,7 +124,7 @@ print(cat.speak())  # Meow!
 
 ---
 
-## 4️⃣ Polymorphism
+### 2.4 Polymorphism
 
 Polymorphism allows different classes to use the **same interface** but provide different implementations.
 
@@ -120,9 +139,9 @@ for animal in animals:
 
 ---
 
-## 🔹 Other Important OOP Concepts in Python
+## 3. Classes and Objects
 
-### ▶ Classes and Objects
+### 3.1 Classes and Objects
 
 - **Class**: Blueprint for creating objects.
 - **Object**: Instance of a class.
@@ -139,7 +158,7 @@ print(my_car.brand, my_car.model)
 
 ---
 
-### ▶ Constructors and Destructors
+## 4. Constructors and Destructors
 
 ```python
 class Person:
@@ -156,7 +175,7 @@ del p
 
 ---
 
-### ▶ Class vs. Instance Variables
+## 5. Class vs. Instance Variables
 
 ```python
 class Student:
@@ -172,7 +191,7 @@ print(s1.school, s2.school)  # Python Academy Python Academy
 
 ---
 
-### ▶ Method Types
+## 6. Method Types
 
 1. **Instance Method** – works with object instance
 2. **Class Method** – works with class (declared with `@classmethod`)
@@ -199,7 +218,7 @@ print(Math.static_method())
 
 ---
 
-### ▶ Dunder (Magic) Methods
+## 7. Dunder (Magic) Methods
 
 Python provides special methods to customize class behavior.
 
@@ -222,7 +241,7 @@ print(len(book))   # 14
 
 ---
 
-### ▶ Multiple Inheritance & MRO (Method Resolution Order)
+## 8. Multiple Inheritance & MRO (Method Resolution Order)
 
 ```python
 class A:
@@ -242,9 +261,9 @@ c.greet()  # Hello from A (Python follows MRO)
 
 ---
 
-## 🔹 Practical Examples
+## 10. Advanced and Practical Examples: OOP in Python
 
-### 📌 Example 1: Simple Employee Management
+### Example 1: Simple Employee Management
 
 ```python
 class Employee:
@@ -270,7 +289,7 @@ print(e1.info())
 print(m1.info())
 ```
 
-### 📌 Example 2: Shape Area Calculator
+### Example 2: Shape Area Calculator
 
 ```python
 from abc import ABC, abstractmethod
@@ -300,7 +319,17 @@ for shape in shapes:
 
 ---
 
-## 🔹 Summary
+---
+
+## 11. Summary and Key Takeaways
+
+- Encapsulation: Data hiding using classes.
+- Abstraction: Hiding implementation details.
+- Inheritance: Code reusability across classes.
+- Polymorphism: Same interface, different behavior.
+- Classes define blueprints, objects are instances.
+- Python supports dunder methods, multiple inheritance, and different method types.
+- With OOP, Python programs become modular, maintainable, and closer to real-world modeling.
 
 - **Encapsulation** → Data hiding using classes.
 - **Abstraction** → Hiding implementation details.

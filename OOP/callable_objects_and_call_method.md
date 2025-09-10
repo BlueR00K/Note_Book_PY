@@ -1,20 +1,54 @@
 # Callable Objects and the `__call__` Method in Python
 
-## 1. Introduction and Syllabus
+## Syllabus
+
+1. Introduction: What are callable objects in Python?
+2. Understanding callability in Python:
+    - Functions, methods, classes, and user-defined objects
+    - The callable protocol
+3. The `__call__` method:
+    - Syntax and mechanics
+    - How Python invokes `__call__`
+    - Signature flexibility and argument handling
+4. Making your own objects callable:
+    - Step-by-step implementation
+    - Maintaining state in callable objects
+    - Comparison with plain functions and lambdas
+5. Use cases for callable objects:
+    - Functors (function objects)
+    - Stateful functions
+    - Custom decorators
+    - Flexible/configurable APIs
+    - Lazy evaluation and deferred computation
+    - Replacing lambdas for complex logic
+6. Callable vs. function:
+    - Similarities and differences
+    - When to use each
+    - Performance and readability considerations
+7. Inspecting callability:
+    - Using the built-in `callable()`
+    - Introspection and type checking
+8. Advanced patterns:
+    - Combining `__call__` with other dunder methods (`__str__`, `__repr__`, etc.)
+    - Callable classes as decorators
+    - Callable objects in design patterns (e.g., Command, Strategy)
+    - Callable objects and closures
+9. Best practices and design guidelines:
+    - When to use callable objects
+    - Documenting callable behavior and side effects
+    - Avoiding overuse and anti-patterns
+10. Common pitfalls and anti-patterns:
+    - Forgetting to implement `__call__`
+    - Unintended state retention
+    - Misuse in simple scenarios
+11. Advanced and practical examples:
+    - Real-world code samples
+    - Edge cases and debugging tips
+12. Summary and key takeaways
+
+## 1. Introduction
 
 In Python, not only functions but also objects can be made callable. This is achieved by defining the special `__call__` method in a class. Callable objects are a powerful feature that enables objects to behave like functions, supporting advanced patterns such as function objects, decorators, and flexible APIs. Understanding callable objects and the `__call__` method is essential for writing idiomatic, extensible, and Pythonic code.
-
-### Syllabus
-
-- What is a callable object? (definition, motivation, and real-world analogy)
-- The `__call__` method: syntax and mechanics
-- How to make your own objects callable
-- Use cases for callable objects
-- Callable vs. function: similarities and differences
-- Inspecting callability with `callable()`
-- Best practices and design patterns
-- Common pitfalls and anti-patterns
-- Real-world examples and advanced usage
 
 ---
 

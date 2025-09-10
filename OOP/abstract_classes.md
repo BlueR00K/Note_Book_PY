@@ -1,20 +1,22 @@
+
 # Abstract Classes in Python
 
-## 1. Introduction and Syllabus
+## Syllabus
+
+1. Introduction: What is an abstract class? (definition, motivation, and real-world analogy)
+2. The `abc` module and `ABC` base class
+3. Defining abstract methods and properties
+4. Instantiating abstract classes (and why you can't)
+5. Implementing concrete subclasses
+6. Abstract properties and class methods
+7. Best practices for interface design
+8. Common pitfalls and anti-patterns
+9. Advanced and practical examples
+10. Summary and key takeaways
+
+## 1. Introduction
 
 Abstract classes are a core concept in object-oriented programming, providing a way to define common interfaces and enforce implementation requirements for subclasses. In Python, abstract classes are implemented using the `abc` module, which allows you to define abstract methods and properties that must be overridden by concrete subclasses. Mastering abstract classes is essential for designing robust, extensible, and maintainable codebases.
-
-### Syllabus
-
-- What is an abstract class? (definition, motivation, and real-world analogy)
-- The `abc` module and `ABC` base class
-- Defining abstract methods and properties
-- Instantiating abstract classes (and why you can't)
-- Implementing concrete subclasses
-- Abstract properties and class methods
-- Best practices for interface design
-- Common pitfalls and anti-patterns
-- Real-world examples and advanced usage
 
 ---
 

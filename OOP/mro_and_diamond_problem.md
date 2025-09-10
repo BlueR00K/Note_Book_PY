@@ -1,4 +1,18 @@
+
 # MRO and the Diamond Problem in Multiple Inheritance (Python)
+
+## Syllabus
+
+1. Introduction: What is MRO and the diamond problem?
+2. What is the diamond problem?
+3. What is MRO (Method Resolution Order)?
+4. How Python solves the diamond problem
+5. Using `super()` with MRO
+6. Best practices
+7. Advanced and practical examples
+8. Summary and key takeaways
+
+---
 
 ## 1. Introduction
 
@@ -98,7 +112,7 @@ d.do()
 
 ---
 
-## Advanced and Practical Examples: MRO and the Diamond Problem
+## 7. Advanced and Practical Examples: MRO and the Diamond Problem
 
 ### 1. Visualizing the Diamond Problem
 
@@ -238,3 +252,10 @@ class D(B, C):
 ```
 
 ---
+
+## 8. Summary and Key Takeaways
+
+- Python’s C3 MRO solves the diamond problem by ensuring each class appears only once in the resolution order.
+- Always use `super()` in methods that may be overridden to ensure proper chaining.
+- Avoid deep and complex inheritance hierarchies; use mixins for reusable functionality.
+- Document the MRO and inheritance structure in class docstrings for clarity.

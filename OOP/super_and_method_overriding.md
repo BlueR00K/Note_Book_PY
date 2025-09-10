@@ -1,6 +1,30 @@
+
 # `super()` and Method Overriding in Python
 
-## 1. Introduction
+### Syllabus
+
+1. Introduction to `super()` and Method Overriding
+2. What is Method Overriding?
+3. What is `super()`?
+4. Why Use `super()`?
+5. Best Practices
+6. Advanced/Practical Examples
+    - Overriding instance, class, and static methods
+    - Using `super()` in single and multiple inheritance
+    - Method Resolution Order (MRO) and C3 linearization
+    - Cooperative multiple inheritance and the diamond problem
+    - Overriding special (dunder) methods
+    - Calling parent methods with and without `super()`
+    - Overriding properties and descriptors
+    - Using `super()` in mixins and abstract base classes
+    - Common pitfalls and anti-patterns
+    - Real-world use cases: logging, validation, resource management
+    - Advanced: cooperative multiple inheritance
+7. Summary
+
+---
+
+## 1. Introduction to `super()` and Method Overriding
 
 `super()` is a built-in function in Python used to call methods from a parent (super) class. Method overriding allows a subclass to provide a specific implementation of a method already defined in its superclass. Together, they are essential for customizing and extending class behavior in object-oriented programming.
 
@@ -79,24 +103,9 @@ d.speak()
 
 ---
 
-## Advanced and Practical Examples: `super()` and Method Overriding
+## 6. Advanced/Practical Examples
 
-### Syllabus: Deep Dive into `super()` and Method Overriding
-
-- Overriding instance methods, class methods, and static methods
-- Using `super()` in single and multiple inheritance
-- Method Resolution Order (MRO) and the C3 linearization algorithm
-- Cooperative multiple inheritance and the diamond problem
-- Overriding special (dunder) methods
-- Calling parent methods with and without `super()`
-- Overriding properties and descriptors
-- Using `super()` in mixins and abstract base classes
-- Common pitfalls and anti-patterns
-- Real-world use cases: logging, validation, resource management, etc.
-
----
-
-### 1. Overriding Instance, Class, and Static Methods
+### 6.1. Overriding Instance, Class, and Static Methods
 
 ```python
 class Base:
@@ -134,7 +143,7 @@ Sub.baz()
 # Base.baz
 ```
 
-### 2. Using `super()` in Multiple Inheritance (Diamond Problem)
+### 6.2. Using `super()` in Multiple Inheritance (Diamond Problem)
 
 ```python
 class A:
@@ -161,7 +170,7 @@ d.greet()
 # Hello from A
 ```
 
-### 3. Method Resolution Order (MRO) and C3 Linearization
+### 6.3. Method Resolution Order (MRO) and C3 Linearization
 
 ```python
 class X: pass
@@ -174,7 +183,7 @@ print(C.mro())
 # [<class 'C'>, <class 'A'>, <class 'B'>, <class 'Y'>, <class 'X'>, <class 'object'>]
 ```
 
-### 4. Overriding Special (Dunder) Methods
+### 6.4. Overriding Special (Dunder) Methods
 
 ```python
 class Base:
@@ -188,7 +197,7 @@ s = Sub()
 print(str(s))  # Sub->Base
 ```
 
-### 5. Overriding Properties and Using `super()`
+### 6.5. Overriding Properties and Using `super()`
 
 ```python
 class Base:
@@ -204,7 +213,7 @@ s = Sub()
 print(s.value)  # 15
 ```
 
-### 6. Calling Parent Methods Directly vs. with `super()`
+### 6.6. Calling Parent Methods Directly vs. with `super()`
 
 ```python
 class Parent:
@@ -223,7 +232,7 @@ c.show()
 # Parent.show
 ```
 
-### 7. Using `super()` in Mixins and Abstract Base Classes
+### 6.7. Using `super()` in Mixins and Abstract Base Classes
 
 ```python
 from abc import ABC, abstractmethod
@@ -246,7 +255,7 @@ s.log("Started")
 # Service: Started
 ```
 
-### 8. Common Pitfall: Forgetting to Use `super()`
+### 6.8. Common Pitfall: Forgetting to Use `super()`
 
 ```python
 class Animal:
@@ -261,7 +270,7 @@ d = Dog("Buddy", "Labrador")
 # d.name  # AttributeError: 'Dog' object has no attribute 'name'
 ```
 
-### 9. Real-World Use Case: Logging and Validation
+### 6.9. Real-World Use Case: Logging and Validation
 
 ```python
 class Base:
@@ -278,7 +287,7 @@ a.save()
 # Saving to database...
 ```
 
-### 10. Advanced: Cooperative Multiple Inheritance with `super()`
+### 6.10. Advanced: Cooperative Multiple Inheritance with `super()`
 
 ```python
 class A:
@@ -311,4 +320,6 @@ d.do()
 # Root.do
 ```
 
----
+## 7. Summary
+
+Using `super()` and method overriding is essential for customizing, extending, and maintaining class behavior in Python. Always use `super()` to ensure proper initialization and method resolution, especially in multiple inheritance. Document your overrides and use best practices to write robust, maintainable, and Pythonic code.

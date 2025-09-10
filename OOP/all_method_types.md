@@ -6,16 +6,17 @@ Python supports several types of methods in classes, each with its own purpose, 
 
 ### Syllabus
 
-- What is a method? (definition and motivation)
-- Instance methods
-- Class methods
-- Static methods
-- Special (dunder) methods
-- Method resolution and binding
-- When to use each method type
-- Best practices and design patterns
-- Common pitfalls and anti-patterns
-- Real-world examples and advanced usage
+1. Introduction: What is a method? (definition and motivation)
+2. Instance methods: syntax, usage, and examples
+3. Class methods: syntax, usage, and examples
+4. Static methods: syntax, usage, and examples
+5. Special (dunder) methods: operator overloading and integration
+6. Method resolution and binding (MRO)
+7. When to use each method type
+8. Best practices and design patterns
+9. Common pitfalls and anti-patterns
+10. Advanced and practical examples
+11. Summary and key takeaways
 
 ---
 

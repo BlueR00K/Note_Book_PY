@@ -1,20 +1,44 @@
+
 # Creating Context Managers Using Classes in Python
 
-## 1. Introduction and Syllabus
+## Syllabus
+
+1. Introduction: What are context managers and why are they important?
+2. The context management protocol:
+    - `__enter__` and `__exit__` methods
+    - How Python uses the protocol
+3. Using context managers with the `with` statement:
+    - Syntax and flow
+    - Resource management and guarantees
+4. Creating a basic context manager class:
+    - Step-by-step implementation
+    - Returning resources from `__enter__`
+5. Exception handling in context managers:
+    - How `__exit__` handles exceptions
+    - Suppressing vs. propagating exceptions
+6. Reusable and parameterized context managers:
+    - Accepting arguments
+    - Managing different resources
+7. Nesting and stacking context managers:
+    - Multiple context managers in one `with` statement
+    - Nested resource management
+8. Best practices and design guidelines:
+    - Always release resources
+    - Avoiding side effects
+    - Documenting context manager behavior
+9. Common pitfalls and anti-patterns:
+    - Not releasing resources on exception
+    - Failing to support reentrancy
+10. Advanced and practical examples:
+    - Real-world code samples
+    - Using `contextlib` for class/function-based managers
+    - Profiling, locking, and temporary state
+11. Further reading and resources
+12. Summary and key takeaways
+
+## 1. Introduction
 
 Context managers are a core feature in Python that allow you to allocate and release resources precisely when you want. They are most commonly used with the `with` statement for resource management (e.g., files, locks, network connections). Creating your own context managers using classes gives you fine-grained control over setup and teardown logic.
-
-### Syllabus
-
-- What is a context manager?
-- The context management protocol: `__enter__` and `__exit__`
-- Using context managers with the `with` statement
-- Creating a basic context manager class
-- Exception handling in context managers
-- Reusable and parameterized context managers
-- Nesting and stacking context managers
-- Best practices and common pitfalls
-- Real-world examples and advanced usage
 
 ---
 
@@ -261,10 +285,25 @@ class BadManager:
 
 Ensure `__exit__` always releases resources, even if an exception occurs.
 
+### 9. Reentrancy: Supporting Multiple Enters
+
+If your context manager may be entered multiple times (nested `with` blocks), ensure it manages state correctly and does not leak or double-release resources. See the "Reentrant Context Manager" example above.
+
 ---
 
-### 9. Further Reading
+### 10. Further Reading
 
 - [Python docs: Context Manager Types](https://docs.python.org/3/library/stdtypes.html#typecontextmanager)
 - [contextlib module](https://docs.python.org/3/library/contextlib.html)
 - [PEP 343: The "with" Statement](https://peps.python.org/pep-0343/)
+
+---
+
+## 12. Summary and Key Takeaways
+
+- Context managers provide precise resource management using the `with` statement.
+- Implement `__enter__` and `__exit__` for custom context managers.
+- Always release resources, even on exceptions.
+- Support reentrancy if needed.
+- Use `contextlib` for simpler or function-based context managers.
+- Document and test your context managers for robust, maintainable code.

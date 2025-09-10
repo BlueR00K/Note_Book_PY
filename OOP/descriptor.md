@@ -1,19 +1,39 @@
+
 # Descriptors in Python
 
-## 1. Introduction and Syllabus
+## Syllabus
+
+1. Introduction: What are descriptors and why are they important?
+2. What is a descriptor?
+    - Definition and motivation
+    - Comparison to properties and other attribute management
+3. The descriptor protocol:
+    - `__get__`, `__set__`, `__delete__` methods
+    - How Python invokes these methods
+4. Types of descriptors:
+    - Data vs non-data descriptors
+    - Precedence rules and attribute lookup
+5. How Python uses descriptors internally:
+    - Properties, methods, static/class methods
+    - Built-in and user-defined descriptors
+6. Creating custom descriptors:
+    - Step-by-step implementation
+    - Storing data per-instance vs on the descriptor
+7. Use cases and motivation:
+    - Type checking, validation, computed attributes, caching, logging, etc.
+8. Best practices and common pitfalls:
+    - Private attribute storage
+    - Avoiding shared state
+    - Documentation and intended use
+9. Advanced and practical examples:
+    - Type-checked, read-only, write-once, cached, logging, and shared descriptors
+    - Anti-patterns and fixes
+10. Further reading and resources
+11. Summary and key takeaways
+
+## 1. Introduction
 
 Descriptors are a powerful, low-level protocol in Python that allow you to customize attribute access, storage, and management in classes. They are the foundation for properties, methods, static/class methods, and many advanced patterns in Python. Mastering descriptors enables you to create reusable, declarative, and efficient attribute management systems.
-
-### Syllabus
-
-- What is a descriptor?
-- The descriptor protocol: `__get__`, `__set__`, `__delete__`
-- Types of descriptors: data vs non-data
-- How Python uses descriptors internally
-- Creating custom descriptors
-- Use cases and motivation
-- Best practices and common pitfalls
-- Real-world examples and advanced usage
 
 ---
 
@@ -22,6 +42,12 @@ Descriptors are a powerful, low-level protocol in Python that allow you to custo
 - A descriptor is any object that implements at least one of the methods: `__get__`, `__set__`, or `__delete__`.
 - Descriptors are used to manage the attributes of other classes.
 - They are the mechanism behind properties, methods, static methods, and class methods.
+
+### Comparison: Descriptors vs Properties and Other Attribute Management
+
+- **Descriptors:** Low-level protocol for attribute access; reusable and customizable; used to build properties, methods, and more.
+- **Properties:** High-level, built-in descriptor for managed attributes; created with `@property` decorator; easier for simple use cases.
+- **Other approaches:** Direct attribute access, `__getattr__`, `__setattr__`, and metaclasses for advanced customization.
 
 ---
 
@@ -49,6 +75,8 @@ Descriptors are a powerful, low-level protocol in Python that allow you to custo
 ---
 
 ## 6. Creating Custom Descriptors
+
+**Important:** For per-instance data, always store values on the instance (e.g., `instance._attr`) rather than on the descriptor itself. This avoids shared state between objects and subtle bugs. See the anti-pattern and best practice examples below.
 
 ```python
 class UpperCase:
@@ -87,11 +115,7 @@ print(p.name)  # ALICE
 
 ---
 
-## 9. Real-World Examples and Advanced Usage
-
----
-
-## 10. Advanced & Practical Examples: Descriptors
+## 9. Advanced & Practical Examples: Descriptors
 
 ### 1. Type-Checked Descriptor
 
@@ -263,8 +287,18 @@ Store data on the instance, not the descriptor, to avoid shared state between ob
 
 ---
 
-### 9. Further Reading
+### 10. Further Reading
 
 - [Python docs: Descriptors](https://docs.python.org/3/howto/descriptor.html)
 - [PEP 487: Simpler customisation of class creation](https://peps.python.org/pep-0487/)
 - [Descriptor HowTo Guide](https://docs.python.org/3/howto/descriptor.html)
+
+---
+
+## 11. Summary and Key Takeaways
+
+- Descriptors provide a powerful, reusable protocol for customizing attribute access in Python.
+- Use descriptors for validation, computed attributes, caching, logging, and more.
+- Always store per-instance data on the instance, not the descriptor, to avoid shared state.
+- Properties are a high-level, built-in descriptor for common managed attribute use cases.
+- Document and test your descriptors for robust, maintainable code.

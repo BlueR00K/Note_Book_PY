@@ -1,24 +1,29 @@
+
 # Property, Setter, and Getter in Python Classes
-
-## 1. Introduction and Syllabus
-
-Python provides a powerful and Pythonic way to manage attribute access and encapsulation using the `property` decorator, along with setter and getter methods. This approach allows you to control how attributes are accessed, validated, or computed, while maintaining a clean and intuitive interface for users of your classes.
 
 ### Syllabus
 
-- What is a property? (definition, motivation, and real-world analogy)
-- Why use properties instead of public attributes?
-- The `property` decorator: syntax and usage
-- Defining getter, setter, and deleter methods
-- Read-only and write-only properties
-- Validation and computed properties
-- Best practices for encapsulation
-- Common pitfalls and anti-patterns
-- Real-world examples and advanced usage
+1. Introduction to Properties
+2. What is a Property? (Definition, Motivation, Real-World Analogy)
+3. Why Use Properties Instead of Public Attributes?
+4. The `property` Decorator: Syntax and Usage
+5. Defining Getter, Setter, and Deleter Methods
+6. Read-Only and Write-Only Properties
+7. Validation and Computed Properties
+8. Best Practices for Encapsulation
+9. Common Pitfalls and Anti-Patterns
+10. Advanced/Practical Examples
+11. Summary
 
 ---
 
-## 2. What is a Property?
+## 1. Introduction to Properties
+
+Python provides a powerful and Pythonic way to manage attribute access and encapsulation using the `property` decorator, along with setter and getter methods. This approach allows you to control how attributes are accessed, validated, or computed, while maintaining a clean and intuitive interface for users of your classes.
+
+---
+
+## 2. What is a Property? (Definition, Motivation, Real-World Analogy)
 
 A property is a special kind of attribute in Python that allows you to define methods for getting, setting, or deleting a value, while still using attribute access syntax (`obj.attr`).
 
@@ -26,7 +31,7 @@ A property is a special kind of attribute in Python that allows you to define me
 
 ---
 
-## 3. Why Use Properties?
+## 3. Why Use Properties Instead of Public Attributes?
 
 - Encapsulate internal state and provide a public interface
 - Add validation, logging, or computation to attribute access
@@ -57,7 +62,7 @@ class Person:
 
 ---
 
-## 5. Getter, Setter, and Deleter Methods
+## 5. Defining Getter, Setter, and Deleter Methods
 
 - **Getter:** Returns the value of the attribute
 - **Setter:** Sets or validates the value
@@ -126,9 +131,9 @@ class Temperature:
 
 ---
 
-## 10. Real-World Examples and Advanced Usage
+## 10. Advanced/Practical Examples
 
-### 1. Read-Only, Write-Only, and Computed Properties
+### 10.1. Read-Only, Write-Only, and Computed Properties
 
 ```python
 class Account:
@@ -155,7 +160,7 @@ print(acc.balance)  # 150
 
 ---
 
-### 2. Properties for Validation and Logging
+### 10.2. Properties for Validation and Logging
 
 ```python
 class Product:
@@ -177,7 +182,7 @@ p.price = 20  # Setting price to 20
 
 ---
 
-### 3. Properties for Backward Compatibility
+### 10.3. Properties for Backward Compatibility
 
 ```python
 class OldClass:
@@ -207,7 +212,7 @@ print(n.value)  # 40
 
 ---
 
-### 4. Using Deleter for Resource Management
+### 10.4. Using Deleter for Resource Management
 
 ```python
 class FileHolder:
@@ -229,7 +234,7 @@ del f.file  # Closing file test.txt
 
 ---
 
-### 5. Best Practice: Documenting Properties
+### 10.5. Best Practice: Documenting Properties
 
 ```python
 class Rectangle:
@@ -244,4 +249,8 @@ class Rectangle:
 
 ---
 
-*These advanced examples show how to use properties, setters, and getters in Python to create robust, maintainable, and Pythonic classes. Mastering properties is key to effective encapsulation and clean APIs.*
+---
+
+## 11. Summary
+
+Mastering properties, setters, and getters in Python enables you to create robust, maintainable, and Pythonic classes. Using these tools effectively is key to encapsulation, validation, and clean APIs in professional Python development.

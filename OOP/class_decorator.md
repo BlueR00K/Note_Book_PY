@@ -1,20 +1,43 @@
 # Class Decorators in Python
 
-## 1. Introduction and Syllabus
+## Syllabus
+
+1. Introduction: What are class decorators in Python?
+2. Understanding class decorators:
+    - Definition, motivation, and real-world analogy
+    - How class decorators differ from function decorators
+3. Syntax and mechanics:
+    - Basic usage and decorator syntax
+    - How Python applies class decorators
+4. Implementing class decorators:
+    - Simple class decorator functions
+    - Using classes as decorators
+    - Decorators with arguments (decorator factories)
+    - Stacking and composing multiple class decorators
+5. Use cases and advanced patterns:
+    - Automatic class registration (plugin systems)
+    - Method wrapping (logging, timing, validation)
+    - Singleton and factory patterns
+    - Enforcing interface/attribute presence
+    - Adding or modifying class attributes and methods
+6. Best practices and design guidelines:
+    - Preserving class metadata
+    - Avoiding side effects and anti-patterns
+    - Documenting decorator behavior
+    - Testing decorated classes
+7. Common pitfalls and anti-patterns:
+    - Returning non-class objects
+    - Breaking inheritance or MRO
+    - Unintended side effects
+8. Advanced and practical examples:
+    - Real-world code samples
+    - Edge cases and debugging tips
+9. Further reading and resources
+10. Summary and key takeaways
+
+## 1. Introduction
 
 Class decorators are a powerful feature in Python that allow you to modify or enhance classes in a reusable and declarative way. They are similar to function decorators but operate at the class level, enabling behaviors such as automatic method wrapping, registration, validation, and more. Understanding class decorators is essential for advanced Python development, especially in frameworks and libraries.
-
-### Syllabus
-
-- What is a class decorator?
-- Syntax and basic usage
-- Difference between function and class decorators
-- Use cases and motivation
-- Implementing a simple class decorator
-- Decorators with arguments
-- Stacking multiple class decorators
-- Best practices and common pitfalls
-- Real-world examples and advanced usage
 
 ---
 

@@ -1,12 +1,47 @@
+
 # `repr` and `str` Methods in Python
 
-## 1. Introduction
+## 1. Syllabus
+
+- Implementing both methods in a class
+- Fallback behavior
+- Using dataclasses for automatic `__repr__`
+- Customizing for debugging and sensitive data
+- Inheritance and nested representations
+- Edge cases: recursion, logging, and default fallback
+
+# `repr` and `str` Methods in Python
+
+### Syllabus
+
+1. Introduction to `repr` and `str`
+2. Why Implement `__repr__` and `__str__`?
+3. Differences Between `__repr__` and `__str__`
+4. Syntax and Usage
+5. Best Practices and Anti-Patterns
+6. Advanced/Practical Examples
+    - Implementing both methods in a class
+    - Fallback behavior
+    - Using dataclasses for automatic `__repr__`
+    - Customizing for debugging and sensitive data
+    - Inheritance and nested representations
+    - Edge cases: recursion, logging, and default fallback
+7. Summary and Key Takeaways
+
+---
+---
+
+## 2. Introduction to `repr` and `str`
 
 The `repr` and `str` methods are special (dunder) methods in Python that control how objects are represented as strings. Understanding and implementing these methods is crucial for debugging, logging, and creating user-friendly classes.
 
+## 2. Why Implement `__repr__` and `__str__`?
+
+Implementing `__repr__` and `__str__` in your classes is crucial for debugging, logging, and user-friendly display. These methods control how your objects are represented as strings, both for developers and end users.
+
 ---
 
-## 2. What is `__repr__`?
+## 3. Differences Between `__repr__` and `__str__`
 
 - `__repr__` stands for "representation".
 - Called by the built-in `repr()` function and in interactive sessions (e.g., the REPL, debugger, or logging).
@@ -29,7 +64,40 @@ print(repr(p))  # Point(x=1, y=2)
 
 ---
 
-## 3. What is `__str__`?
+## 4. Syntax and Usage
+
+### Example: `__repr__`
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __repr__(self):
+        return f"Point(x={self.x}, y={self.y})"
+
+p = Point(1, 2)
+print(repr(p))  # Point(x=1, y=2)
+```
+
+### Example: `__str__`
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+p = Point(1, 2)
+print(str(p))  # (1, 2)
+print(p)       # (1, 2)
+```
+
+---
+
+## 5. Best Practices and Anti-Patterns
 
 - `__str__` stands for "string".
 - Called by the built-in `str()` function and by `print()`.
@@ -53,7 +121,7 @@ print(p)       # (1, 2)
 
 ---
 
-## 4. Differences Between `__repr__` and `__str__`
+## 5. Differences Between `__repr__` and `__str__`
 
 | Feature         | `__repr__`                        | `__str__`                  |
 |----------------|------------------------------------|----------------------------|
@@ -64,7 +132,7 @@ print(p)       # (1, 2)
 
 ---
 
-## 5. Best Practices
+## 6. Best Practices
 
 - Always implement `__repr__` for custom classes, especially for debugging and logging.
 - If `__str__` is not defined, Python uses `__repr__` as a fallback.
@@ -76,9 +144,9 @@ print(p)       # (1, 2)
 
 ---
 
-## Advanced and Practical Examples: `repr` and `str` Methods
+## 6. Advanced/Practical Examples
 
-### 1. Implementing Both `__repr__` and `__str__` in a Class
+### 6.1. Implementing Both `__repr__` and `__str__` in a Class
 
 ```python
 class User:
@@ -96,7 +164,7 @@ print(str(u))   # alice <alice@example.com>
 print(u)        # alice <alice@example.com>
 ```
 
-### 2. Fallback Behavior: Only `__repr__` Defined
+### 6.2. Fallback Behavior: Only `__repr__` Defined
 
 ```python
 class Product:
@@ -110,7 +178,7 @@ print(str(p))   # Product('Book')
 print(repr(p))  # Product('Book')
 ```
 
-### 3. Using `dataclasses` for Automatic `__repr__`
+### 6.3. Using `dataclasses` for Automatic `__repr__`
 
 ```python
 from dataclasses import dataclass
@@ -125,7 +193,7 @@ print(repr(p))  # Point(x=3, y=4)
 print(str(p))   # Point(x=3, y=4)
 ```
 
-### 4. Customizing `__repr__` for Debugging Complex Objects
+### 6.4. Customizing `__repr__` for Debugging Complex Objects
 
 ```python
 class Order:
@@ -139,7 +207,7 @@ o = Order(123, ["apple", "banana"])
 print(repr(o))  # Order(order_id=123, items=['apple', 'banana'])
 ```
 
-### 5. Handling Large or Sensitive Data in `__repr__`
+### 6.5. Handling Large or Sensitive Data in `__repr__`
 
 ```python
 class Secret:
@@ -152,7 +220,7 @@ s = Secret("supersecret")
 print(repr(s))  # Secret(token=<hidden>)
 ```
 
-### 6. `__repr__` and `__str__` in Inheritance
+### 6.6. `__repr__` and `__str__` in Inheritance
 
 ```python
 class Animal:
@@ -172,7 +240,7 @@ print(repr(d))  # Dog(name='Rex')
 print(str(d))   # Dog: Rex
 ```
 
-### 7. Using `!r` and `!s` in f-strings for Nested Representations
+### 6.7. Using `!r` and `!s` in f-strings for Nested Representations
 
 ```python
 class Box:
@@ -188,7 +256,7 @@ print(repr(b))  # Box(content=[1, 2, 3])
 print(str(b))   # Box of [1, 2, 3]
 ```
 
-### 8. Edge Case: Recursive Objects
+### 6.8. Edge Case: Recursive Objects
 
 ```python
 class Node:
@@ -205,7 +273,7 @@ n2.next = n1  # Circular reference
 print(repr(n1))  # Will cause RecursionError if not handled carefully
 ```
 
-### 9. Using `__repr__` for Logging and Debugging
+### 6.9. Using `__repr__` for Logging and Debugging
 
 ```python
 import logging
@@ -220,7 +288,7 @@ logging.basicConfig(level=logging.DEBUG)
 logging.debug("User info: %r", u)
 ```
 
-### 10. Fallback to Default `__repr__`/`__str__`
+### 6.10. Fallback to Default `__repr__`/`__str__`
 
 ```python
 class Empty:
@@ -230,5 +298,19 @@ e = Empty()
 print(repr(e))  # <__main__.Empty object at 0x...>
 print(str(e))   # <__main__.Empty object at 0x...>
 ```
+
+---
+
+## 7. Summary and Key Takeaways
+
+- Always implement `__repr__` for debugging and logging
+- Use `__str__` for user-friendly display
+- Understand fallback behavior and edge cases
+- Use dataclasses for automatic representations when appropriate
+
+- Always implement `__repr__` for debugging and logging
+- Use `__str__` for user-friendly display
+- Understand fallback behavior and edge cases
+- Use dataclasses for automatic representations when appropriate
 
 ---

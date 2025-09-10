@@ -1,6 +1,32 @@
+
 # Single Inheritance in Python
 
-## 1. Introduction
+### Syllabus
+
+1. Introduction to Single Inheritance
+2. What is Single Inheritance?
+3. Syntax and Basic Examples
+4. Overriding Methods and Attributes
+5. Using `super()`
+6. Best Practices and Anti-Patterns
+7. Advanced/Practical Examples
+    - Extending parent functionality
+    - Inheriting and overriding attributes
+    - Deep inheritance chains
+    - Type checking and `isinstance`/`issubclass`
+    - Customizing `__init__` and parent initializers
+    - Inheriting and adding new methods
+    - Documenting inheritance in docstrings
+    - Edge cases: not calling `super()`
+    - Code reuse and composition
+    - Prefer composition when appropriate
+8. Summary and Key Takeaways
+
+---
+
+---
+
+## 1. Introduction to Single Inheritance
 
 Single inheritance is a fundamental concept in object-oriented programming (OOP) where a class (child/subclass) inherits attributes and methods from one parent (base/super) class. It enables code reuse, logical hierarchy, and extension of existing functionality.
 
@@ -14,7 +40,7 @@ Single inheritance is a fundamental concept in object-oriented programming (OOP)
 
 ---
 
-## 3. Syntax and Basic Example
+## 3. Syntax and Basic Examples
 
 ```python
 class Animal:
@@ -32,7 +58,7 @@ d.bark()   # Woof!
 
 ---
 
-## 4. Overriding Methods
+## 4. Overriding Methods and Attributes
 
 - The subclass can provide its own implementation of methods defined in the parent class.
 
@@ -79,7 +105,7 @@ d.speak()
 
 ---
 
-## 6. Best Practices
+## 6. Best Practices and Anti-Patterns
 
 - Use single inheritance for clear, logical relationships.
 - Prefer composition over inheritance if the relationship is not "is-a".
@@ -89,9 +115,9 @@ d.speak()
 
 ---
 
-## Advanced and Practical Examples: Single Inheritance
+## 7. Advanced/Practical Examples
 
-### 1. Extending Parent Functionality
+### 7.1. Extending Parent Functionality
 
 ```python
 class Vehicle:
@@ -112,7 +138,7 @@ c.start()
 # Car-specific startup checks complete.
 ```
 
-### 2. Inheriting and Overriding Attributes
+### 7.2. Inheriting and Overriding Attributes
 
 ```python
 class Employee:
@@ -131,7 +157,7 @@ print(m.name, m.role, m.department)
 # Alice Manager IT
 ```
 
-### 3. Using `super()` in Deep Inheritance Chains
+### 7.3. Using `super()` in Deep Inheritance Chains
 
 ```python
 class A:
@@ -153,7 +179,7 @@ c.greet()
 # Hello from C
 ```
 
-### 4. Type Checking and `isinstance`/`issubclass`
+### 7.4. Type Checking and `isinstance`/`issubclass`
 
 ```python
 class Animal:
@@ -167,7 +193,7 @@ print(isinstance(d, Animal))  # True
 print(issubclass(Dog, Animal))  # True
 ```
 
-### 5. Customizing `__init__` and Calling Parent Initializer
+### 7.5. Customizing `__init__` and Calling Parent Initializer
 
 ```python
 class Shape:
@@ -183,7 +209,7 @@ print(c.color, c.radius)
 # red 5
 ```
 
-### 6. Inheriting Methods and Adding New Ones
+### 7.6. Inheriting Methods and Adding New Ones
 
 ```python
 class Writer:
@@ -198,7 +224,7 @@ b.write()  # Writing...
 b.blog()   # Blogging...
 ```
 
-### 7. Using Docstrings to Document Inheritance
+### 7.7. Using Docstrings to Document Inheritance
 
 ```python
 class Animal:
@@ -209,7 +235,7 @@ class Dog(Animal):
     pass
 ```
 
-### 8. Edge Case: Overriding Methods Without Calling `super()`
+### 7.8. Edge Case: Overriding Methods Without Calling `super()`
 
 ```python
 class Base:
@@ -223,7 +249,7 @@ c = Child()
 c.greet()  # Hello from Child
 ```
 
-### 9. Using Single Inheritance for Code Reuse
+### 7.9. Using Single Inheritance for Code Reuse
 
 ```python
 class Logger:
@@ -238,7 +264,7 @@ s.process()
 # LOG: Processing started
 ```
 
-### 10. Best Practice: Prefer Composition When Appropriate
+### 7.10. Best Practice: Prefer Composition When Appropriate
 
 ```python
 class Engine:
@@ -254,5 +280,14 @@ c = Car()
 c.start()
 # Engine started
 ```
+
+---
+
+## 8. Summary and Key Takeaways
+
+- Single inheritance enables clear, logical class hierarchies and code reuse
+- Use `super()` to maintain parent class behavior
+- Prefer composition over inheritance when appropriate
+- Document inheritance and method overrides for maintainability
 
 ---

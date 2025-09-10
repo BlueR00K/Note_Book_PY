@@ -1,4 +1,18 @@
+
 # Multiple Inheritance in Python
+
+## Syllabus
+
+1. Introduction: What is multiple inheritance and why is it important?
+2. What is multiple inheritance?
+3. Syntax and basic example
+4. The diamond problem and MRO
+5. Using `super()` in multiple inheritance
+6. Best practices
+7. Advanced and practical examples
+8. Summary and key takeaways
+
+---
 
 ## 1. Introduction
 
@@ -102,7 +116,7 @@ d.do()
 
 ---
 
-## Advanced and Practical Examples: Multiple Inheritance
+## 7. Advanced and Practical Examples: Multiple Inheritance
 
 ### 1. Combining Functionality from Multiple Parents
 
@@ -272,5 +286,14 @@ print(e.timestamp())
 ### 10. Limitation: Cooperative `super()` Only Works with New-Style Classes
 
 # All classes in Python 3 are new-style (inherit from `object`), so `super()` works as expected
+
+---
+
+## 8. Summary and Key Takeaways
+
+- Multiple inheritance enables powerful code reuse but introduces complexity (diamond problem, MRO).
+- Always use `super()` in methods that may be overridden to ensure proper chaining.
+- Prefer mixins for sharing functionality across classes.
+- Avoid deep and complex hierarchies; document the inheritance structure and MRO.
 
 ---
