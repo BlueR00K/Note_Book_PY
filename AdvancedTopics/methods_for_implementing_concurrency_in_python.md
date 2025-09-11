@@ -64,24 +64,23 @@ Main Thread
 
 ### Example: Using the threading Module
 
-
 ```python
 import threading
 import time
 
 def worker(n):
-	print(f"Thread {n} starting")
-	time.sleep(2)
-	print(f"Thread {n} finished")
+ print(f"Thread {n} starting")
+ time.sleep(2)
+ print(f"Thread {n} finished")
 
 threads = []
 for i in range(5):
-	t = threading.Thread(target=worker, args=(i,))
-	threads.append(t)
-	t.start()
+ t = threading.Thread(target=worker, args=(i,))
+ threads.append(t)
+ t.start()
 
 for t in threads:
-	t.join()
+ t.join()
 ```
 
 ### When to Use Threading
@@ -118,25 +117,24 @@ Main Process
 
 ### Example: Using the multiprocessing Module
 
-
 ```python
 import multiprocessing
 import time
 
 def worker(n):
-	print(f"Process {n} starting")
-	time.sleep(2)
-	print(f"Process {n} finished")
+ print(f"Process {n} starting")
+ time.sleep(2)
+ print(f"Process {n} finished")
 
 if __name__ == "__main__":
-	processes = []
-	for i in range(5):
-		p = multiprocessing.Process(target=worker, args=(i,))
-		processes.append(p)
-		p.start()
+ processes = []
+ for i in range(5):
+  p = multiprocessing.Process(target=worker, args=(i,))
+  processes.append(p)
+  p.start()
 
-	for p in processes:
-		p.join()
+ for p in processes:
+  p.join()
 ```
 
 ### When to Use Multiprocessing
@@ -172,7 +170,6 @@ Event Loop
 
 ### Example: Using asyncio
 
-
 ### Example: Using the threading Module (continued)
 
 ```python
@@ -180,19 +177,20 @@ import threading
 import time
 
 def worker(n):
-	print(f"Thread {n} starting")
-	time.sleep(2)
-	print(f"Thread {n} finished")
+ print(f"Thread {n} starting")
+ time.sleep(2)
+ print(f"Thread {n} finished")
 
 threads = []
 for i in range(5):
-	t = threading.Thread(target=worker, args=(i,))
-	threads.append(t)
-	t.start()
+ t = threading.Thread(target=worker, args=(i,))
+ threads.append(t)
+ t.start()
 
 for t in threads:
-	t.join()
+ t.join()
 ```
+
 ### Example: Using the multiprocessing Module (continued)
 
 ```python
@@ -200,45 +198,47 @@ import multiprocessing
 import time
 
 def worker(n):
-	print(f"Process {n} starting")
-	time.sleep(2)
-	print(f"Process {n} finished")
+ print(f"Process {n} starting")
+ time.sleep(2)
+ print(f"Process {n} finished")
 
 if __name__ == "__main__":
-	processes = []
-	for i in range(5):
-		p = multiprocessing.Process(target=worker, args=(i,))
-		processes.append(p)
-		p.start()
+ processes = []
+ for i in range(5):
+  p = multiprocessing.Process(target=worker, args=(i,))
+  processes.append(p)
+  p.start()
 
-	for p in processes:
-		p.join()
+ for p in processes:
+  p.join()
 ```
+
 ### Example: Using asyncio (continued)
 
 ```python
 import asyncio
 
 async def worker(n):
-	print(f"Coroutine {n} starting")
-	await asyncio.sleep(2)
-	print(f"Coroutine {n} finished")
+ print(f"Coroutine {n} starting")
+ await asyncio.sleep(2)
+ print(f"Coroutine {n} finished")
 
 async def main():
-	await asyncio.gather(*(worker(i) for i in range(5)))
+ await asyncio.gather(*(worker(i) for i in range(5)))
 
 asyncio.run(main())
 ```
+
 ```python
 import asyncio
 
 async def worker(n):
-	print(f"Coroutine {n} starting")
-	await asyncio.sleep(2)
-	print(f"Coroutine {n} finished")
+ print(f"Coroutine {n} starting")
+ await asyncio.sleep(2)
+ print(f"Coroutine {n} finished")
 
 async def main():
-	await asyncio.gather(*(worker(i) for i in range(5)))
+ await asyncio.gather(*(worker(i) for i in range(5)))
 
 asyncio.run(main())
 ```
@@ -269,13 +269,13 @@ from concurrent.futures import ThreadPoolExecutor
 import time
 
 def worker(n):
-	print(f"ThreadPool worker {n} starting")
-	time.sleep(2)
-	print(f"ThreadPool worker {n} finished")
+ print(f"ThreadPool worker {n} starting")
+ time.sleep(2)
+ print(f"ThreadPool worker {n} finished")
 
 with ThreadPoolExecutor(max_workers=3) as executor:
-	for i in range(5):
-		executor.submit(worker, i)
+ for i in range(5):
+  executor.submit(worker, i)
 ```
 
 #### Example: ProcessPoolExecutor
@@ -285,14 +285,14 @@ from concurrent.futures import ProcessPoolExecutor
 import time
 
 def worker(n):
-	print(f"ProcessPool worker {n} starting")
-	time.sleep(2)
-	print(f"ProcessPool worker {n} finished")
+ print(f"ProcessPool worker {n} starting")
+ time.sleep(2)
+ print(f"ProcessPool worker {n} finished")
 
 if __name__ == "__main__":
-	with ProcessPoolExecutor(max_workers=3) as executor:
-		for i in range(5):
-			executor.submit(worker, i)
+ with ProcessPoolExecutor(max_workers=3) as executor:
+  for i in range(5):
+   executor.submit(worker, i)
 ```
 
 ### gevent and eventlet
@@ -307,9 +307,9 @@ from gevent import monkey; monkey.patch_all()
 import time
 
 def worker(n):
-	print(f"Gevent worker {n} starting")
-	time.sleep(2)
-	print(f"Gevent worker {n} finished")
+ print(f"Gevent worker {n} starting")
+ time.sleep(2)
+ print(f"Gevent worker {n} finished")
 
 jobs = [gevent.spawn(worker, i) for i in range(5)]
 gevent.joinall(jobs)
@@ -328,15 +328,15 @@ import threading
 import requests
 
 def download(url):
-	resp = requests.get(url)
-	print(f"Downloaded {url}: {len(resp.content)} bytes")
+ resp = requests.get(url)
+ print(f"Downloaded {url}: {len(resp.content)} bytes")
 
 urls = ["https://example.com" for _ in range(5)]
 threads = [threading.Thread(target=download, args=(url,)) for url in urls]
 for t in threads:
-	t.start()
+ t.start()
 for t in threads:
-	t.join()
+ t.join()
 ```
 
 #### asyncio Example
@@ -346,15 +346,15 @@ import asyncio
 import aiohttp
 
 async def download(url):
-	async with aiohttp.ClientSession() as session:
-		async with session.get(url) as resp:
-			content = await resp.read()
-			print(f"Downloaded {url}: {len(content)} bytes")
+ async with aiohttp.ClientSession() as session:
+  async with session.get(url) as resp:
+   content = await resp.read()
+   print(f"Downloaded {url}: {len(content)} bytes")
 
 urls = ["https://example.com" for _ in range(5)]
 
 async def main():
-	await asyncio.gather(*(download(url) for url in urls))
+ await asyncio.gather(*(download(url) for url in urls))
 
 asyncio.run(main())
 ```
@@ -367,12 +367,12 @@ asyncio.run(main())
 import multiprocessing
 
 def compute(n):
-	return sum(i * i for i in range(n))
+ return sum(i * i for i in range(n))
 
 if __name__ == "__main__":
-	with multiprocessing.Pool(4) as pool:
-		results = pool.map(compute, [10**6] * 4)
-	print(results)
+ with multiprocessing.Pool(4) as pool:
+  results = pool.map(compute, [10**6] * 4)
+ print(results)
 ```
 
 ---
