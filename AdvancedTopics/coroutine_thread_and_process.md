@@ -1,6 +1,5 @@
 # Coroutine, Thread, and Process
 
-
 ## Syllabus
 
 1. Introduction: Why study coroutines, threads, and processes?
@@ -24,7 +23,6 @@ In this topic, you will learn:
 - Common pitfalls and how to avoid them
 
 Let's begin by defining each concept in detail.
-
 
 ## 2. Definitions and Core Concepts
 
@@ -206,5 +204,3 @@ if __name__ == "__main__":
 - Choose based on your workload and always test
 
 ---
-
-
